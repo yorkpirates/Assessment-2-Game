@@ -10,6 +10,9 @@ import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
 
+
+import javax.swing.*;
+
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
 /**
@@ -45,6 +48,20 @@ public class MenuScreen extends Page {
         });
         t.add(play).top().size(100, 25).spaceBottom(space);
         t.row();
+
+        JFileChooser fileChooser = new JFileChooser();
+
+
+        TextButton load = new TextButton("Load", parent.skin);
+        load.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                fileChooser.showOpenDialog(null);
+            }
+        });
+        t.add(load).top().size(100, 25).spaceBottom(space);
+        t.row();
+
 
         TextButton quit = new TextButton("Quit", parent.skin);
         quit.addListener(new ChangeListener() {

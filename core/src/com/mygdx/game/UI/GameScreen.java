@@ -2,6 +2,7 @@ package com.mygdx.game.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
+import com.badlogic.gdx.files.FileHandle;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -13,6 +14,8 @@ import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Managers.*;
 import com.mygdx.game.PirateGame;
 import com.mygdx.game.Quests.Quest;
+
+import java.io.*;
 
 import static com.mygdx.utils.Constants.*;
 
@@ -123,6 +126,9 @@ public class GameScreen extends Page {
         GameManager.update();
         // show end screen if esc is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
+
+
+
             parent.setScreen(parent.end);
         }
         super.render(delta);
@@ -225,4 +231,5 @@ public class GameScreen extends Page {
 
         table.top().left();
     }
+
 }
