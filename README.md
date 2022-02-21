@@ -1,4 +1,6 @@
-# How-Hard-Can-It-Be
+# Team 9
+
+assessment2.yorkpirates.uk
 
 ![Screenshot of game](game.png)
 
