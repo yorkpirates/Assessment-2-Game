@@ -9,6 +9,7 @@ import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.UI.EndScreen;
 import com.mygdx.game.UI.GameScreen;
 import com.mygdx.game.UI.MenuScreen;
+import com.mygdx.game.UI.ShopScreen;
 
 /**
  * Contains class instances of game UI screens.
@@ -19,6 +20,7 @@ public class PirateGame extends Game {
     public EndScreen end;
     public Stage stage;
     public Skin skin;
+    public ShopScreen shop;
 
     /**
      * Create instances of game stage and UI screens.
@@ -32,12 +34,14 @@ public class PirateGame extends Game {
         int extras_id = ResourceManager.addTextureAtlas("UISkin/skin.atlas");
         int buildings_id = ResourceManager.addTextureAtlas("Buildings.txt");
         ResourceManager.addTexture("menuBG.jpg");
+        ResourceManager.addTexture("shopBG.jpg");
         ResourceManager.addTexture("Chest.png");
         ResourceManager.loadAssets();
         // cant load any more resources after this point (just functionally I choose not to implement)
         stage = new Stage(new ScreenViewport());
         createSkin();
         menu = new MenuScreen(this);
+        shop = new ShopScreen(this);
         game = new GameScreen(this, id_map);
         end = new EndScreen(this);
         setScreen(menu);
@@ -49,6 +53,7 @@ public class PirateGame extends Game {
     @Override
     public void dispose() {
         menu.dispose();
+        shop.dispose();
         game.dispose();
         stage.dispose();
         skin.dispose();
