@@ -99,6 +99,9 @@ public class GameScreen extends Page {
         table.row();
         table.add(new Label("Quit", parent.skin)).left();
         table.add(new Image(parent.skin, "key-esc"));
+        table.row();
+        table.add(new Label("Shop", parent.skin)).left();
+        table.add(new Image(parent.skin, "key-d"));
 
     }
 
@@ -126,10 +129,10 @@ public class GameScreen extends Page {
         GameManager.update();
         // show end screen if esc is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-
-
-
             parent.setScreen(parent.end);
+        }
+        if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
+            parent.setScreen(parent.shop);
         }
         super.render(delta);
     }
