@@ -101,7 +101,7 @@ public class GameScreen extends Page {
         table.add(new Image(parent.skin, "key-esc"));
         table.row();
         table.add(new Label("Shop", parent.skin)).left();
-        table.add(new Image(parent.skin, "key-d"));
+        table.add(new Image(parent.skin, "key-e"));
 
     }
 
