@@ -274,3 +274,10 @@ mouse
   orig: 32, 28
   offset: 0, 0
   index: -1
+key-e
+  rotate: false
+  xy: 52, 0
+  size: 32, 26
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
