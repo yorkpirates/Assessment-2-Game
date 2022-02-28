@@ -56,7 +56,7 @@ public class MenuScreen extends Page {
         load.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                fileChooser.showOpenDialog(null);
+//                fileChooser.showOpenDialog(null);
             }
         });
         t.add(load).top().size(100, 25).spaceBottom(space);
