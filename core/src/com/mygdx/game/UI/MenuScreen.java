@@ -13,6 +13,8 @@ import com.mygdx.game.PirateGame;
 
 import javax.swing.*;
 
+import java.awt.*;
+
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
 /**
@@ -49,14 +51,14 @@ public class MenuScreen extends Page {
         t.add(play).top().size(100, 25).spaceBottom(space);
         t.row();
 
-        JFileChooser fileChooser = new JFileChooser();
+
 
 
         TextButton load = new TextButton("Load", parent.skin);
         load.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                fileChooser.showOpenDialog(null);
+                showLoadMenu();
             }
         });
         t.add(load).top().size(100, 25).spaceBottom(space);
@@ -94,5 +96,18 @@ public class MenuScreen extends Page {
         super.resize(width, height);
         Table t = (Table) actors.get(0);
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg"))); // prevent the bg being stretched
+    }
+    private void showLoadMenu(){
+        if(System.getProperty("os.name").contains("Mac")){
+            //Choose A
+            FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
+            fileDialog.setVisible(true);
+        }
+        else{
+            JFileChooser fileChooser = new JFileChooser();
+            fileChooser.showOpenDialog(null);
+        }
+
+
     }
 }
