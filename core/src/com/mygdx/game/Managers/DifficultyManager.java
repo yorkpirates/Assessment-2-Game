@@ -12,7 +12,6 @@ public class DifficultyManager {
 
     public static void SelectNormal() {
         level = "n";
-//        Player.setHealth(starting.getInt("health-hard"));
     }
 
     public static void SelectHard() {
