@@ -35,7 +35,6 @@ public class Pirate extends Component {
         health = starting.getInt("health");
         attackDmg = starting.getInt("damage");
         ammo = starting.getInt("ammo");
-        System.out.println(DifficultyManager.getDifficulty());
         health = starting.getInt("health");
     }
 
