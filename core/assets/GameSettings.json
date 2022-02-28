@@ -1,6 +1,8 @@
 {
   "starting": {
     "health": 100,
+    "health-easy": 200,
+    "health-hard": 50,
     "damage": 10.0,
     "plunder": 0,
     "playerSpeed": 100.0,

@@ -4,6 +4,7 @@ import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Faction;
+import com.mygdx.game.Managers.DifficultyManager;
 import com.mygdx.game.Managers.GameManager;
 import com.mygdx.utils.QueueFIFO;
 
@@ -34,6 +35,7 @@ public class Pirate extends Component {
         health = starting.getInt("health");
         attackDmg = starting.getInt("damage");
         ammo = starting.getInt("ammo");
+        health = starting.getInt("health");
     }
 
     public void addTarget(Ship target) {
@@ -88,6 +90,10 @@ public class Pirate extends Component {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int overrideHealth) {
+        health = overrideHealth;
     }
 
     /**
