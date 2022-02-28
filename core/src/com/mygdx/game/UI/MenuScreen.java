@@ -100,6 +100,7 @@ public class MenuScreen extends Page {
     private void showLoadMenu(){
         if(System.getProperty("os.name").contains("Mac")){
             //Choose A
+            System.setProperty("apple.awt.fileDialogForDirectories", "true");
             FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
             fileDialog.setVisible(true);
         }
