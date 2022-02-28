@@ -1,5 +1,6 @@
 package com.mygdx.game.Managers;
 
+//import com.mygdx.game.Entitys.Player;
 import jdk.internal.org.jline.utils.DiffHelper;
 
 public class DifficultyManager {
@@ -9,15 +10,16 @@ public class DifficultyManager {
 
     }
 
-    public void SelectNormal() {
+    public static void SelectNormal() {
         level = "n";
+//        Player.setHealth(starting.getInt("health-hard"));
     }
 
-    public void SelectHard() {
+    public static void SelectHard() {
         level = "h";
     }
 
-    public void SelectEasy() {
+    public static void SelectEasy() {
         level = "e";
     }
 

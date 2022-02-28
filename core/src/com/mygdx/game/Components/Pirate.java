@@ -18,7 +18,6 @@ public class Pirate extends Component {
     private int health;
     private int ammo;
     private final int attackDmg;
-    private String mode;
 
     /**
      * The enemy that is being targeted by the AI.
@@ -27,7 +26,6 @@ public class Pirate extends Component {
 
     public Pirate() {
         super();
-        mode = DifficultyManager.getDifficulty();
         targets = new QueueFIFO<>();
         type = ComponentType.Pirate;
         plunder = GameManager.getSettings().get("starting").getInt("plunder");
@@ -37,14 +35,8 @@ public class Pirate extends Component {
         health = starting.getInt("health");
         attackDmg = starting.getInt("damage");
         ammo = starting.getInt("ammo");
-
-        if (mode == "h") {
-            health = starting.getInt("health-hard");
-        } else if (mode == "e") {
-            health = starting.getInt("health-easy");
-        } else {
-            health = starting.getInt("health");
-        }
+        System.out.println(DifficultyManager.getDifficulty());
+        health = starting.getInt("health");
     }
 
     public void addTarget(Ship target) {
@@ -99,6 +91,10 @@ public class Pirate extends Component {
 
     public int getHealth() {
         return health;
+    }
+
+    public void setHealth(int overrideHealth) {
+        health = overrideHealth;
     }
 
     /**

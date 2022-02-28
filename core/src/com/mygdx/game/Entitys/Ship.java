@@ -136,6 +136,10 @@ public class Ship extends Entity implements CollisionCallBack {
         return getComponent(Pirate.class).getHealth();
     }
 
+    public void setHealth(int overrideHealth) {
+        getComponent(Pirate.class).setHealth(overrideHealth);
+    }
+
     public int getPlunder() {
         return getComponent(Pirate.class).getPlunder();
     }

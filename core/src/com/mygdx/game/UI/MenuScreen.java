@@ -3,10 +3,14 @@ package com.mygdx.game.UI;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
+import com.mygdx.game.Entitys.Player;
+import com.mygdx.game.Managers.DifficultyManager;
+import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
 
@@ -41,13 +45,35 @@ public class MenuScreen extends Page {
         t.add(l).top().spaceBottom(space * 0.5f);
         t.row();
 
+        final SelectBox<String> selectBox=new SelectBox<String>(parent.skin);
+        selectBox.setItems("Select Difficulty","Easy","Normal","Hard");
+
+        t.add(selectBox).top().size(100, 25);
+        t.row();
+
+
         TextButton play = new TextButton("Play", parent.skin);
         play.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
+                switch (selectBox.getSelected()){
+                    case "Select Difficulty":
+                        return;
+                    case "Easy":
+                        DifficultyManager.SelectEasy();
+                        break;
+                    case "Normal":
+                        DifficultyManager.SelectNormal();
+                        break;
+                    case "Hard":
+                        DifficultyManager.SelectHard();
+                        break;
+                }
                 parent.setScreen(parent.game);
+                GameManager.getPlayer().updateHealth();
             }
         });
+
         t.add(play).top().size(100, 25).spaceBottom(space);
         t.row();
 
