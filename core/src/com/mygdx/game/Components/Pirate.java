@@ -13,10 +13,10 @@ import com.mygdx.utils.QueueFIFO;
  */
 public class Pirate extends Component {
     private int factionId;
-    private int plunder;
+    public static int plunder;
     protected boolean isAlive;
-    private int health;
-    private int ammo;
+    public static int health;
+    public static int ammo;
     private final int attackDmg;
 
     /**
@@ -46,7 +46,7 @@ public class Pirate extends Component {
         return plunder;
     }
 
-    public void addPlunder(int money) {
+    public static void addPlunder(int money) {
         plunder += money;
     }
 
@@ -82,10 +82,10 @@ public class Pirate extends Component {
     /**
      * Adds ammo
      *
-     * @param ammo amount to add
+     * @param newAmmo amount to add
      */
-    public void reload(int ammo) {
-        this.ammo += ammo;
+    public static void addAmmo(int newAmmo) {
+        ammo += newAmmo;
     }
 
     public int getHealth() {

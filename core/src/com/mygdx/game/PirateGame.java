@@ -6,10 +6,7 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Managers.ResourceManager;
-import com.mygdx.game.UI.EndScreen;
-import com.mygdx.game.UI.GameScreen;
-import com.mygdx.game.UI.MenuScreen;
-import com.mygdx.game.UI.ShopScreen;
+import com.mygdx.game.UI.*;
 
 /**
  * Contains class instances of game UI screens.
@@ -21,6 +18,7 @@ public class PirateGame extends Game {
     public Stage stage;
     public Skin skin;
     public ShopScreen shop;
+    public PowerupScreen powerup;
 
     /**
      * Create instances of game stage and UI screens.
@@ -44,6 +42,7 @@ public class PirateGame extends Game {
         shop = new ShopScreen(this);
         game = new GameScreen(this, id_map);
         end = new EndScreen(this);
+        powerup = new PowerupScreen(this);
         setScreen(menu);
     }
 
@@ -57,6 +56,7 @@ public class PirateGame extends Game {
         game.dispose();
         stage.dispose();
         skin.dispose();
+        powerup.dispose();
     }
 
     /**

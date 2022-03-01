@@ -37,7 +37,7 @@ public class MenuScreen extends Page {
         Table t = new Table();
         t.setFillParent(true);
 
-        float space = VIEWPORT_HEIGHT * 0.25f;
+        float space = VIEWPORT_HEIGHT * 0.10f;
 
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg")));
         Label l = new Label("Pirates the movie the game", parent.skin);

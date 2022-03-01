@@ -10,6 +10,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Components.ComponentEvent;
+import com.mygdx.game.Components.Text;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Managers.*;
 import com.mygdx.game.PirateGame;
@@ -20,11 +21,16 @@ import java.io.*;
 import static com.mygdx.utils.Constants.*;
 
 public class GameScreen extends Page {
-    private Label healthLabel;
-    private Label dosh;
-    private Label ammo;
-    private final Label questDesc;
-    private final Label questName;
+    public static Label healthLabel;
+    public static Label dosh;
+    public static Label ammo;
+    public static Label questName;
+    public static Label questDesc;
+//    private Label healthLabel;
+//    private Label dosh;
+//    private Label ammo;
+//    private final Label questDesc;
+//    private final Label questName;
     /*private final Label questComplete;
     private float showTimer = 0;
     // in seconds
@@ -127,10 +133,11 @@ public class GameScreen extends Page {
         }
 
         GameManager.update();
-        // show end screen if esc is pressed
+        // show end screen if ESC key is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
             parent.setScreen(parent.end);
         }
+        // show shop screen if E key is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             parent.setScreen(parent.shop);
         }
