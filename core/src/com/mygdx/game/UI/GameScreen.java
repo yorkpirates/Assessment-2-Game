@@ -133,9 +133,9 @@ public class GameScreen extends Page {
         }
 
         GameManager.update();
-        // show end screen if ESC key is pressed
+        // show Quit Confirm screen if ESC key is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            parent.setScreen(parent.end);
+            parent.setScreen(parent.quitConfirm);
         }
         // show shop screen if E key is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {

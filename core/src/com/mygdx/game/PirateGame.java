@@ -19,6 +19,7 @@ public class PirateGame extends Game {
     public Skin skin;
     public ShopScreen shop;
     public PowerupScreen powerup;
+    public QuitConfirmationScreen quitConfirm;
 
     /**
      * Create instances of game stage and UI screens.
@@ -43,6 +44,7 @@ public class PirateGame extends Game {
         game = new GameScreen(this, id_map);
         end = new EndScreen(this);
         powerup = new PowerupScreen(this);
+        quitConfirm = new QuitConfirmationScreen(this);
         setScreen(menu);
     }
 
@@ -57,6 +59,7 @@ public class PirateGame extends Game {
         stage.dispose();
         skin.dispose();
         powerup.dispose();
+        quitConfirm.dispose();
     }
 
     /**
