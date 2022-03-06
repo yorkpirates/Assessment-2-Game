@@ -74,7 +74,15 @@ public class QuitConfirmationScreen extends Page {
             }
         });
         t.add(quit).top().size(100, 25).spaceBottom(space);
+        t.row();
+        TextButton SaveBtn = new TextButton("Save", parent.skin);
+        SaveBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
 
+            }
+        });
+        t.add(SaveBtn).top().size(100, 25).spaceBottom(space);
         t.row();
         TextButton back = new TextButton("Return", parent.skin);
         back.addListener(new ChangeListener() {
