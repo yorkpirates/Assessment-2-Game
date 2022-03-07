@@ -18,14 +18,14 @@ public final class SaveObject  {
      */
 
     //uses STAX parser
-    public static void writeXMl(){
+    public static void writeXMl(String path){
 
         try{
             //setUP outputs
             StringWriter stringWriter = new StringWriter();
             XMLOutputFactory xMLOutputFactory = XMLOutputFactory.newInstance();
             XMLStreamWriter xMLStreamWriter =
-                    xMLOutputFactory.createXMLStreamWriter(new FileOutputStream("test.xml"));
+                    xMLOutputFactory.createXMLStreamWriter(new FileOutputStream(path));
             //write the xml
             xMLStreamWriter.writeStartDocument();
             xMLStreamWriter.writeStartElement("SAVE");
