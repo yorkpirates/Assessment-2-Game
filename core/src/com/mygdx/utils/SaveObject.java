@@ -1,5 +1,6 @@
 package com.mygdx.utils;
 
+import com.badlogic.gdx.Game;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.GameManager;
@@ -114,6 +115,9 @@ public final class SaveObject  {
                             else if(qName.equalsIgnoreCase("position")){
                                 placeShip(eventReader);
                             }
+                            else if(qName.equalsIgnoreCase("GAMEDATA")){
+                                loadGameData(eventReader);
+                            }
                             break;
 
                         case XMLStreamConstants.CHARACTERS:
@@ -138,6 +142,7 @@ public final class SaveObject  {
     }
 
     private static void placeShip(XMLEventReader eventReader) throws XMLStreamException {
+        //skip through the xml till we find data values
         while (! eventReader.peek().isCharacters()){
             eventReader.nextEvent();
         }
@@ -162,5 +167,24 @@ public final class SaveObject  {
         GameManager.ships.get(index).setPosition(x,y);
 
     }
+    private static void loadGameData(XMLEventReader eventReader) throws XMLStreamException {
+        while (! eventReader.peek().isCharacters()){
+            eventReader.nextEvent();
+        }
+        XMLEvent event = eventReader.nextEvent();
 
+        Characters chars = event.asCharacters();
+        int ammo = Integer.parseInt(chars.getData());
+        GameManager.getPlayer().setAmmo(ammo);
+
+        while (! eventReader.peek().isCharacters()){
+            eventReader.nextEvent();
+        }
+        event = eventReader.nextEvent();
+        chars = event.asCharacters();
+        int plunder = Integer.parseInt(chars.getData());
+        //as game starts at 0 add the money from the save on.
+        GameManager.getPlayer().plunder(plunder);
+
+    }
 }

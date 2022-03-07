@@ -55,4 +55,7 @@ public class Player extends Ship {
     public int getAmmo() {
         return getComponent(Pirate.class).getAmmo();
     }
+    public void setAmmo(Integer ammo){
+        getComponent(Pirate.class).setAmmo(ammo);
+    }
 }
