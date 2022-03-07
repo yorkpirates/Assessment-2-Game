@@ -14,6 +14,7 @@ import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
+import com.mygdx.utils.SaveObject;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -79,7 +80,7 @@ public class QuitConfirmationScreen extends Page {
         SaveBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-
+                SaveObject.writeXMl();
             }
         });
         t.add(SaveBtn).top().size(100, 25).spaceBottom(space);
