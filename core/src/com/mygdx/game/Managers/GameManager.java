@@ -19,11 +19,12 @@ import java.util.ArrayList;
 public final class GameManager {
     private static boolean initialized = false;
     private static ArrayList<Faction> factions;
-    private static ArrayList<Ship> ships;
+    public static ArrayList<Ship> ships;
     private static ArrayList<College> colleges;
 
     private static final int cacheSize = 20;
     private static ArrayList<CannonBall> ballCache;
+    private static ArrayList<CannonBallCollege> ballCache2;
     private static int currentElement;
 
     private static JsonValue settings;
@@ -42,10 +43,15 @@ public final class GameManager {
         factions = new ArrayList<>();
         ships = new ArrayList<>();
         ballCache = new ArrayList<>(cacheSize);
+        ballCache2 = new ArrayList<>(cacheSize);
         colleges = new ArrayList<>();
 
         for (int i = 0; i < cacheSize; i++) {
             ballCache.add(new CannonBall());
+        }
+
+        for (int i = 0; i < cacheSize; i++) {
+            ballCache2.add(new CannonBallCollege());
         }
 
         for (JsonValue v : settings.get("factions")) {
@@ -179,6 +185,13 @@ public final class GameManager {
         Vector2 pos = p.getComponent(Transform.class).getPosition().cpy();
         //pos.add(dir.x * TILE_SIZE * 0.5f, dir.y * TILE_SIZE * 0.5f);
         ballCache.get(currentElement++).fire(pos, dir, p);
+        currentElement %= cacheSize;
+    }
+
+    public static void shoot2(College c, Vector2 dir) {
+        Vector2 pos = c.getComponent(Transform.class).getPosition().cpy();
+        //pos.add(dir.x * TILE_SIZE * 0.5f, dir.y * TILE_SIZE * 0.5f);
+        ballCache2.get(currentElement++).fire(pos, dir, c);
         currentElement %= cacheSize;
     }
 
