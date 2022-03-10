@@ -20,7 +20,7 @@ public final class GameManager {
     private static boolean initialized = false;
     private static ArrayList<Faction> factions;
     public static ArrayList<Ship> ships;
-    private static ArrayList<College> colleges;
+    public static ArrayList<College> colleges;
 
     private static final int cacheSize = 20;
     private static ArrayList<CannonBall> ballCache;

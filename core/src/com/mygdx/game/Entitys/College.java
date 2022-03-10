@@ -105,12 +105,16 @@ public class College extends Entity {
         GameManager.shoot2(this, target);
     }
 
+    public Vector2 getPosition() {
+        return getComponent(Transform.class).getPosition().cpy();
+    }
+
     @Override
     public void update() {
         super.update();
         isAlive();
-        if (i == 60) {
-            target = GameManager.ships.get(0).getPosition();
+        if (i == 100) {
+            target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
             shoot(target);
             i = 0;
         }
