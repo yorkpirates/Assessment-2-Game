@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public final class GameManager {
     private static boolean initialized = false;
     private static ArrayList<Faction> factions;
-    private static ArrayList<Ship> ships;
+    public static ArrayList<Ship> ships;
     private static ArrayList<College> colleges;
 
     private static final int cacheSize = 20;

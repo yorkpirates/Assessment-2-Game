@@ -11,9 +11,15 @@ import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Entitys.Player;
+import com.mygdx.game.Managers.DifficultyManager;
 import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
+import com.mygdx.utils.SaveObject;
+
+import javax.swing.*;
+import java.awt.*;
+import java.io.File;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -74,7 +80,15 @@ public class QuitConfirmationScreen extends Page {
             }
         });
         t.add(quit).top().size(100, 25).spaceBottom(space);
-
+        t.row();
+        TextButton SaveBtn = new TextButton("Save", parent.skin);
+        SaveBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                showSaveMenu();
+            }
+        });
+        t.add(SaveBtn).top().size(100, 25).spaceBottom(space);
         t.row();
         TextButton back = new TextButton("Return", parent.skin);
         back.addListener(new ChangeListener() {
@@ -106,5 +120,33 @@ public class QuitConfirmationScreen extends Page {
         super.resize(width, height);
         Table t = (Table) actors.get(0);
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("shopBG.jpg"))); // prevent the bg being stretched
+    }
+    private void showSaveMenu(){
+        if(System.getProperty("os.name").contains("Mac")){
+            //Choose A
+            System.setProperty("apple.awt.fileDialogForDirectories", "true");
+            FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
+            fileDialog.setVisible(true);
+            System.out.println("If you want to load GAMES on mac then due to apple 20% policies we will need to have 20% of the cost of this product wired to our accounts in Monero thanks ♥");
+        }
+        else{
+            JFileChooser fileChooser = new JFileChooser();
+
+            int value = fileChooser.showSaveDialog(null);
+            if (value == JFileChooser.APPROVE_OPTION){
+                File selected=  fileChooser.getSelectedFile();
+
+                SaveObject.writeXMl(selected.getAbsolutePath());
+                //to be removed upon implementation in save
+                DifficultyManager.SelectEasy();
+                parent.setScreen(parent.game);
+                //to be removed upon implementation in save
+                GameManager.getPlayer().updateHealth();
+
+            }
+
+        }
+
+
     }
 }
