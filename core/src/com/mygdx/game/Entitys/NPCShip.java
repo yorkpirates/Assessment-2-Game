@@ -139,6 +139,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
         if (!(info.a instanceof Ship)) {
             return;
         }
+        super.EnterTrigger(info);
         Ship other = (Ship) info.a;
         if (Objects.equals(other.getComponent(Pirate.class).getFaction().getName(), getComponent(Pirate.class).getFaction().getName())) {
             // is the same faction
@@ -156,6 +157,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
+
         if (!(info.a instanceof Ship)) {
             return;
         }
