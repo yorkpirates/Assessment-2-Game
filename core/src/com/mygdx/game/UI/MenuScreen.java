@@ -13,11 +13,13 @@ import com.mygdx.game.Managers.DifficultyManager;
 import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
+import com.mygdx.utils.SaveObject;
 
 
 import javax.swing.*;
 
 import java.awt.*;
+import java.io.File;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -129,10 +131,24 @@ public class MenuScreen extends Page {
             System.setProperty("apple.awt.fileDialogForDirectories", "true");
             FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
             fileDialog.setVisible(true);
+            System.out.println("If you want to load GAMES on mac then due to apple 20% policies we will need to have 20% of the cost of this product wired to our accounts in Monero thanks ♥");
         }
         else{
             JFileChooser fileChooser = new JFileChooser();
-            fileChooser.showOpenDialog(null);
+
+            int value = fileChooser.showOpenDialog(null);
+            if (value == JFileChooser.APPROVE_OPTION){
+                File selected=  fileChooser.getSelectedFile();
+
+                SaveObject.readXML(selected.getAbsolutePath());
+                //to be removed upon implementation in save
+                DifficultyManager.SelectEasy();
+                parent.setScreen(parent.game);
+                //to be removed upon implementation in save
+                GameManager.getPlayer().updateHealth();
+
+            }
+
         }
 
 
