@@ -6,7 +6,12 @@ import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Skin;
 import com.badlogic.gdx.utils.viewport.ScreenViewport;
 import com.mygdx.game.Managers.ResourceManager;
-import com.mygdx.game.UI.*;
+import com.mygdx.game.UI.EndScreen;
+import com.mygdx.game.UI.GameScreen;
+import com.mygdx.game.UI.MenuScreen;
+import com.mygdx.game.UI.ShopScreen;
+
+import javax.annotation                                                                                                                                                        .Resource;
 
 /**
  * Contains class instances of game UI screens.
@@ -18,8 +23,6 @@ public class PirateGame extends Game {
     public Stage stage;
     public Skin skin;
     public ShopScreen shop;
-    public PowerupScreen powerup;
-    public QuitConfirmationScreen quitConfirm;
 
     /**
      * Create instances of game stage and UI screens.
@@ -35,6 +38,7 @@ public class PirateGame extends Game {
         ResourceManager.addTexture("menuBG.jpg");
         ResourceManager.addTexture("shopBG.jpg");
         ResourceManager.addTexture("Chest.png");
+        ResourceManager.addTexture("timeline.jpg");
         ResourceManager.loadAssets();
         // cant load any more resources after this point (just functionally I choose not to implement)
         stage = new Stage(new ScreenViewport());
@@ -43,8 +47,6 @@ public class PirateGame extends Game {
         shop = new ShopScreen(this);
         game = new GameScreen(this, id_map);
         end = new EndScreen(this);
-        powerup = new PowerupScreen(this);
-        quitConfirm = new QuitConfirmationScreen(this);
         setScreen(menu);
     }
 
@@ -58,8 +60,6 @@ public class PirateGame extends Game {
         game.dispose();
         stage.dispose();
         skin.dispose();
-        powerup.dispose();
-        quitConfirm.dispose();
     }
 
     /**

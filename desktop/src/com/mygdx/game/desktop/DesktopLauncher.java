@@ -54,7 +54,7 @@ public class DesktopLauncher {
         String env = System.getenv("JAVA_STARTED_ON_FIRST_THREAD_" + pid);
 
         // if environment variable is "1" then XstartOnFirstThread is enabled
-        if (env != null && env.equals("1")) {
+        if (env != null && env.equals("1")) {                            
             return false;
         }
 

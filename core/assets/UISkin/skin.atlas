@@ -239,6 +239,13 @@ heart
   orig: 32, 32
   offset: 0, 0
   index: -1
+timeline
+  rotate: false
+  xy: 64, 128
+  size: 32, 32
+  orig: 32, 32
+  offset: 0, 0
+  index: -1
 key-d
   rotate: false
   xy: 32, 128

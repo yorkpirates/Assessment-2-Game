@@ -17,6 +17,7 @@ public class PlayerController extends Component {
     private Player player;
     private float speed;
 
+
     public PlayerController() {
         super();
         type = ComponentType.PlayerController;
@@ -31,6 +32,7 @@ public class PlayerController extends Component {
         this();
         this.player = player;
         this.speed = speed;
+
     }
 
     /**
@@ -47,14 +49,13 @@ public class PlayerController extends Component {
 
         RigidBody rb = parent.getComponent(RigidBody.class);
         rb.setVelocity(dir);
-
         RenderingManager.getCamera().position.set(new Vector3(player.getPosition(), 0.0f));
         RenderingManager.getCamera().update();
 
         if (Gdx.input.isButtonJustPressed(Input.Buttons.LEFT)) {
             int x = Gdx.input.getX();
             int y = Gdx.input.getY();
-
+            System.out.println("shoot");
             // in range 0 to VIEWPORT 0, 0 bottom left
             Vector2 delta = new Vector2(x, y);
             delta.sub(HALF_DIMENSIONS); // center 0, 0
@@ -68,6 +69,7 @@ public class PlayerController extends Component {
             // unit dir to fire
             ((Ship) parent).shoot();
         }
+
     }
 
     /**
@@ -95,4 +97,6 @@ public class PlayerController extends Component {
         }
         return dir;
     }
+
+
 }

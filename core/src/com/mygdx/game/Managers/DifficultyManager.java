@@ -1,7 +1,7 @@
 package com.mygdx.game.Managers;
 
 //import com.mygdx.game.Entitys.Player;
-import jdk.internal.org.jline.utils.DiffHelper;
+//import jdk.internal.org.jline.utils.DiffHelper;
 
 public class DifficultyManager {
     private static String level = "n";

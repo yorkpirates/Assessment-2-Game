@@ -5,7 +5,7 @@ import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Components.PlayerController;
 import com.mygdx.game.Managers.DifficultyManager;
 import com.mygdx.game.Managers.GameManager;
-import jdk.internal.org.jline.utils.DiffHelper;
+// import jdk.internal.org.jline.utils.DiffHelper;
 
 /**
  * Player's ship entity.
