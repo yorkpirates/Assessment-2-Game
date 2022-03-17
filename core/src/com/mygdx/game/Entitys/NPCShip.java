@@ -1,5 +1,6 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.fsm.DefaultStateMachine;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.steer.behaviors.Arrive;
@@ -25,6 +26,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
     public StateMachine<NPCShip, EnemyState> stateMachine;
     private static JsonValue AISettings;
     private final QueueFIFO<Vector2> path;
+    private int timer;
 
     /**
      * Creates an initial state machine
@@ -52,7 +54,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
 
         // agro trigger
         rb.addTrigger(Utilities.tilesToDistance(starting.getFloat("argoRange_tiles")), "agro");
-
+        timer = 0;
     }
 
     /**
@@ -71,7 +73,18 @@ public class NPCShip extends Ship implements CollisionCallBack {
     public void update() {
         super.update();
         stateMachine.update();
+        AINavigation nav = getComponent(AINavigation.class);
+        if(stateMachine.isInState(EnemyState.ATTACK)){
+            if (timer ==100){
+                shoot();
+                timer = 0;
+            }
+            else {
+                timer ++;
+            }
 
+
+        }
         // System.out.println(getComponent(Pirate.class).targetCount());
     }
 
@@ -148,6 +161,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
         // add the new collision as a new target
         Pirate pirate = getComponent(Pirate.class);
         pirate.addTarget(other);
+
     }
 
     /**
