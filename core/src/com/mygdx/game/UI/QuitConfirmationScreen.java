@@ -124,10 +124,7 @@ public class QuitConfirmationScreen extends Page {
     private void showSaveMenu(){
         if(System.getProperty("os.name").contains("Mac")){
             //Choose A
-            System.setProperty("apple.awt.fileDialogForDirectories", "true");
-            FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
-            fileDialog.setVisible(true);
-            System.out.println("If you want to load GAMES on mac then due to apple 20% policies we will need to have 20% of the cost of this product wired to our accounts in Monero thanks ♥");
+            SaveObject.writeXMl("SAVED_GAME.xml");
         }
         else{
             JFileChooser fileChooser = new JFileChooser();

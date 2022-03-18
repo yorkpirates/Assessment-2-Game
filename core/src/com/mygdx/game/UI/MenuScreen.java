@@ -127,11 +127,14 @@ public class MenuScreen extends Page {
     }
     private void showLoadMenu(){
         if(System.getProperty("os.name").contains("Mac")){
-            //Choose A
-            System.setProperty("apple.awt.fileDialogForDirectories", "true");
-            FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
-            fileDialog.setVisible(true);
-            System.out.println("If you want to load GAMES on mac then due to apple 20% policies we will need to have 20% of the cost of this product wired to our accounts in Monero thanks ♥");
+            //Get ABSOLOUTE file for mac
+            SaveObject.readXML("SAVED_GAME.xml");
+            //to be removed upon implementation in save
+            DifficultyManager.SelectEasy();
+            parent.setScreen(parent.game);
+            //to be removed upon implementation in save
+            GameManager.getPlayer().updateHealth();
+
         }
         else{
             JFileChooser fileChooser = new JFileChooser();
