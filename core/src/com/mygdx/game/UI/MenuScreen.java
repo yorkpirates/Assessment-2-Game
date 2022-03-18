@@ -20,6 +20,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -86,7 +87,11 @@ public class MenuScreen extends Page {
         load.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showLoadMenu();
+                    try {
+                        showLoadMenu();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
             }
         });
         t.add(load).top().size(100, 25).spaceBottom(space);
@@ -125,13 +130,13 @@ public class MenuScreen extends Page {
         Table t = (Table) actors.get(0);
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg"))); // prevent the bg being stretched
     }
-    private void showLoadMenu(){
+    private void showLoadMenu() throws FileNotFoundException {
         if(System.getProperty("os.name").contains("Mac")){
             //Get ABSOLOUTE file for mac
             File f = new File("SAVED_GAME.xml");
 
             if(!f.exists()){
-                return;
+                throw new FileNotFoundException();
             }
             SaveObject.readXML("SAVED_GAME.xml");
             //to be removed upon implementation in save
