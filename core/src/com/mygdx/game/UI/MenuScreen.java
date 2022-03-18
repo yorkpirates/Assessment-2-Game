@@ -88,6 +88,7 @@ public class MenuScreen extends Page {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                     try {
+                        JOptionPane.showMessageDialog(null,"TEST");
                         showLoadMenu();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
