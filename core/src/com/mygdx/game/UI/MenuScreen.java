@@ -128,6 +128,11 @@ public class MenuScreen extends Page {
     private void showLoadMenu(){
         if(System.getProperty("os.name").contains("Mac")){
             //Get ABSOLOUTE file for mac
+            File f = new File("SAVED_GAME.xml");
+
+            if(!f.exists()){
+                return;
+            }
             SaveObject.readXML("SAVED_GAME.xml");
             //to be removed upon implementation in save
             DifficultyManager.SelectEasy();
