@@ -24,6 +24,7 @@ import com.mygdx.game.Quests.Quest;
 
 import java.io.*;
 import java.util.ArrayList;
+import java.util.Random;
 
 import static com.mygdx.utils.Constants.*;
 
@@ -48,10 +49,8 @@ public class GameScreen extends Page {
     private int num_powers;
     private int message1, message2;
     private Texture texture;
-    private Image timeBar1;
-    private Image timeBar2;
     private float interval;
-
+    private Random r = new Random();
 
 
 
@@ -97,8 +96,6 @@ public class GameScreen extends Page {
             questName.setText(q.getName());
             questDesc.setText(q.getDescription());
         }
-        /*questComplete = new Label("", parent.skin);
-        actors.add(questComplete);*/
 
         t.add(questDesc).left();
         questWindow.add(t);
@@ -216,6 +213,12 @@ public class GameScreen extends Page {
     protected void update() {
         super.update();
         Player p = GameManager.getPlayer();
+        boolean reward_powerUp = p.getReward_powerUp();
+
+        if (reward_powerUp == true){
+            rewardPowerUp();
+            p.setReward_powerUp(false);
+        }
 
         powerUp();
         healthLabel.setText(String.valueOf(p.getHealth()));
@@ -291,11 +294,6 @@ public class GameScreen extends Page {
         warn1 = new Label("", parent.skin);
         warn2 = new Label("", parent.skin);
 
-        timeBar1 = new Image(new TextureRegion(texture));
-        timeBar1.setSize(100, 60);
-        timeBar2 = new Image(new TextureRegion(texture));
-        timeBar2.setSize(100,60);
-
         table_message.add(warn2).bottom().right().size(60);
         table_message.row();
 
@@ -328,10 +326,146 @@ public class GameScreen extends Page {
         }
     }
 
+    private void rewardPowerUp(){
+        ArrayList<Ship> ships = GameManager.getShips();
+        int j = r.nextInt(5);
+        switch (j){
+            case 0:
+                // TempImmortality
+                if (powers[0] == 0 && num_powers < 2) {
+                    if (message1 == -1) {
+                        power_up_name1.setText("Power Up - Temporary Immortality");
+                        message1 = 0;
+                    } else {
+                        power_up_name2.setText("Power Up - Temporary Immortality");
+                        message2 = 0;
+                    }
+                    ships.get(0).tempImmortality(true);
+                    powers[0] = durations[0];
+                    num_powers++;
+                    interval = 0;
+                }
+                else if (powers[0] > 0 && num_powers < 2)
+                    send_warn(1);
+                else if (num_powers==2)
+                    send_warn(2);
+
+                break;
+            case 1:
+                // BiggerDamage
+                if (powers[1]==0 && num_powers<2){
+                    if (message1==-1){
+                        power_up_name1.setText("Power Up - Bigger Damage");
+                        message1 = 1;
+                    }
+                    else{
+                        power_up_name2.setText("Power Up - Bigger Damage");
+                        message2 = 1;
+                    }
+                    ships.get(0).biggerDamage(true);
+                    powers[1] = durations[1];
+                    num_powers++;
+                }
+                else if (powers[1] > 0 && num_powers < 2)
+                    send_warn(1);
+                else if (num_powers==2)
+                    send_warn(2);
+                break;
+            case 2:
+                // EightDirections
+                if (powers[2]==0 && num_powers<2){
+                    if (message1==-1){
+                        power_up_name1.setText("Power Up - Shoot All 8 Directions");
+                        message1 = 2;
+                    }
+                    else{
+                        power_up_name2.setText("Power Up - Shoot All 8 Directions");
+                        message2 = 2;
+                    }
+                    ships.get(0).shoot8Directions(true);
+                    powers[2] = durations[2];
+                    num_powers++;
+                }
+                else if (powers[2] > 0 && num_powers < 2)
+                    send_warn(1);
+                else if (num_powers==2)
+                    send_warn(2);
+                break;
+            case 3:
+                // UnlimitedAmmo
+                if (powers[3]==0 && num_powers<2){
+                    if (message1==-1){
+                        power_up_name1.setText("Power Up - Unlimited Ammo");
+                        message1 = 3;
+                    }
+                    else{
+                        power_up_name2.setText("Power Up - Unlimited Ammo");
+                        message2 = 3;
+                    }
+                    ships.get(0).unlimitedAmmo(true);
+                    powers[3] = durations[3];
+                    num_powers++;
+                }
+
+                else if (powers[3] > 0 && num_powers < 2)
+                    send_warn(1);
+
+                else if (num_powers==2)
+                    send_warn(2);
+
+                break;
+            case 4:
+                // FreezeEnemies
+                if (powers[4]==0 && num_powers<2){
+                    if (message1==-1){
+                        power_up_name1.setText("Power Up - Freeze Enemies");
+                        message1 = 4;
+                    }
+                    else{
+                        power_up_name2.setText("Power Up - Freeze Enemies");
+                        message2 = 4;
+                    }
+                    for(int i=1; i<ships.size();i++){
+                        ships.get(i).setFreeze(true);
+                    }
+                    powers[4] = durations[4];
+                    num_powers++;
+                }
+                else if (powers[4] > 0 && num_powers < 2)
+                    send_warn(1);
+                else if (num_powers==2)
+                    send_warn(2);
+                break;
+            case 5:
+                // More ship
+                if(powers[5]==0&& num_powers<2){
+                    if (message1==-1){
+                        power_up_name1.setText("Power Up - More Ships");
+                        message1 = 5;
+                    }
+                    else{
+                        power_up_name2.setText("Power Up - More Ships");
+                        message2 = 5;
+                    }
+                    GameManager.addNPCMyShip();
+                    powers[5]=5;
+                    num_powers++;
+                }
+                else if (powers[5]>0 && num_powers < 2)
+                    send_warn(1);
+
+                else if (num_powers==2)
+                    send_warn(2);
+                break;
+            default:
+                break;
+        }
+    }
 
     private void powerUp(){
+        System.out.println(num_powers);
         ArrayList<Ship> ships = GameManager.getShips();
-        float threshold = 0.1f;  //intervals between keyPress
+        float threshold = 0.1f;
         interval += Gdx.graphics.getDeltaTime();
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
             // TempImmortality
