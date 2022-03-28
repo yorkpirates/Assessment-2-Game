@@ -35,6 +35,7 @@ public class GameScreen extends Page {
     public static Label ammo;
     public static Label questName;
     public static Label questDesc;
+
     private Label power_up_name1;
     private Label power_up_time1;
     private Label power_up_name2;
@@ -43,11 +44,11 @@ public class GameScreen extends Page {
     private Label warn2;
 
 
-    private float[] powers;
-    private int[] durations;
-    private float warn1_time, warn2_time;
-    private int num_powers;
-    private int message1, message2;
+    public static float[] powers;
+    public static int[] durations;
+    public static float warn1_time, warn2_time;
+    public static int num_powers;
+    public static int message1, message2;
     private Texture texture;
     private float interval;
     private Random r = new Random();
@@ -161,16 +162,16 @@ public class GameScreen extends Page {
             accumulator -= PHYSICS_TIME_STEP;
         }
 
-        GameManager.update();
         // show end screen if esc is pressed
         if (Gdx.input.isKeyJustPressed(Input.Keys.ESCAPE)) {
-            parent.setScreen(parent.end);
+            parent.setScreen(parent.quitConfirm);
         }
         if (Gdx.input.isKeyJustPressed(Input.Keys.E)) {
             parent.setScreen(parent.shop);
         }
 
-        super.render(delta);
+        GameManager.update();
+        super.render(0);
     }
 
     /**
@@ -248,6 +249,7 @@ public class GameScreen extends Page {
             questComplete.setText("");
         }*/
         //createMessage();
+
     }
 
     /**
@@ -333,7 +335,7 @@ public class GameScreen extends Page {
         switch (j){
             case 0:
                 // TempImmortality
-                if (powers[0] == 0 && num_powers < 2) {
+                if (PowerupScreen.isPowerup1Owned && num_powers < 2) {
                     if (message1 == -1) {
                         power_up_name1.setText("Power Up - Temporary Immortality");
                         message1 = 0;
@@ -354,7 +356,7 @@ public class GameScreen extends Page {
                 break;
             case 1:
                 // BiggerDamage
-                if (powers[1]==0 && num_powers<2){
+                if (PowerupScreen.isPowerup2Owned && num_powers < 2){
                     if (message1==-1){
                         power_up_name1.setText("Power Up - Bigger Damage");
                         message1 = 1;
@@ -374,7 +376,7 @@ public class GameScreen extends Page {
                 break;
             case 2:
                 // EightDirections
-                if (powers[2]==0 && num_powers<2){
+                if (PowerupScreen.isPowerup3Owned && num_powers < 2){
                     if (message1==-1){
                         power_up_name1.setText("Power Up - Shoot All 8 Directions");
                         message1 = 2;
@@ -394,7 +396,7 @@ public class GameScreen extends Page {
                 break;
             case 3:
                 // UnlimitedAmmo
-                if (powers[3]==0 && num_powers<2){
+                if (PowerupScreen.isPowerup4Owned && num_powers < 2){
                     if (message1==-1){
                         power_up_name1.setText("Power Up - Unlimited Ammo");
                         message1 = 3;
@@ -417,7 +419,7 @@ public class GameScreen extends Page {
                 break;
             case 4:
                 // FreezeEnemies
-                if (powers[4]==0 && num_powers<2){
+                if (PowerupScreen.isPowerup5Owned && num_powers < 2){
                     if (message1==-1){
                         power_up_name1.setText("Power Up - Freeze Enemies");
                         message1 = 4;
@@ -439,7 +441,7 @@ public class GameScreen extends Page {
                 break;
             case 5:
                 // More ship
-                if(powers[5]==0&& num_powers<2){
+                if(PowerupScreen.isPowerup6Owned && num_powers < 2){
                     if (message1==-1){
                         power_up_name1.setText("Power Up - More Ships");
                         message1 = 5;
@@ -464,13 +466,49 @@ public class GameScreen extends Page {
     }
 
     private void powerUp(){
-        System.out.println(num_powers);
+        //System.out.println("test");
+
+        super.update();
+
+
+        Table t2 = new Table();
+        t2.bottom().right();
+        t2.setFillParent(true);
+        actors.add(t2);
+
+        Window powerWindow = new Window("Powerups", parent.skin);
+        Table powerTable = new Table();
+        powerWindow.add(powerTable);
+        t2.row();
+        t2.add(powerWindow).right();
+
+        if(PowerupScreen.isPowerup1Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup1.png")));
+        }
+        if(PowerupScreen.isPowerup2Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup2.png")));
+        }
+        if(PowerupScreen.isPowerup3Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup3.png")));
+        }
+        if(PowerupScreen.isPowerup4Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup4.png")));
+        }
+        if(PowerupScreen.isPowerup5Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup5.png")));
+        }
+        if(PowerupScreen.isPowerup6Owned){
+            powerTable.add(new Image(ResourceManager.getTexture("powerup6.png")));
+        }
+
+
+
         ArrayList<Ship> ships = GameManager.getShips();
         float threshold = 0.1f;
         interval += Gdx.graphics.getDeltaTime();
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_1)) {
             // TempImmortality
-            if (powers[0] == 0 && num_powers < 2) {
+            if (PowerupScreen.isPowerup1Owned && num_powers < 2) { // If owned
                 if (message1 == -1) {
                     power_up_name1.setText("Power Up - Temporary Immortality");
                     message1 = 0;
@@ -479,6 +517,7 @@ public class GameScreen extends Page {
                     message2 = 0;
                 }
                 ships.get(0).tempImmortality(true);
+                PowerupScreen.isPowerup1Owned = false;
                 powers[0] = durations[0];
                 num_powers++;
                 interval = 0;
@@ -496,7 +535,7 @@ public class GameScreen extends Page {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_2)) {
             // BiggerDamage
-            if (powers[1]==0 && num_powers<2){
+            if (PowerupScreen.isPowerup2Owned && num_powers < 2){
                 if (message1==-1){
                     power_up_name1.setText("Power Up - Bigger Damage");
                     message1 = 1;
@@ -506,6 +545,7 @@ public class GameScreen extends Page {
                     message2 = 1;
                 }
                 ships.get(0).biggerDamage(true);
+                PowerupScreen.isPowerup2Owned = false;
                 powers[1] = durations[1];
                 num_powers++;
                 interval = 0;
@@ -525,7 +565,7 @@ public class GameScreen extends Page {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_3)) {
             // EightDirections
-            if (powers[2]==0 && num_powers<2){
+            if (PowerupScreen.isPowerup3Owned && num_powers < 2){
                 if (message1==-1){
                     power_up_name1.setText("Power Up - Shoot All 8 Directions");
                     message1 = 2;
@@ -535,6 +575,7 @@ public class GameScreen extends Page {
                     message2 = 2;
                 }
                 ships.get(0).shoot8Directions(true);
+                PowerupScreen.isPowerup3Owned = false;
                 powers[2] = durations[2];
                 num_powers++;
                 interval =0;
@@ -554,7 +595,7 @@ public class GameScreen extends Page {
         }
         if(Gdx.input.isKeyPressed(Input.Keys.NUM_4)) {
             // UnlimitedAmmo
-            if (powers[3]==0 && num_powers<2){
+            if (PowerupScreen.isPowerup4Owned && num_powers < 2){
                 if (message1==-1){
                     power_up_name1.setText("Power Up - Unlimited Ammo");
                     message1 = 3;
@@ -564,6 +605,7 @@ public class GameScreen extends Page {
                     message2 = 3;
                 }
                 ships.get(0).unlimitedAmmo(true);
+                PowerupScreen.isPowerup4Owned = false;
                 powers[3] = durations[3];
                 num_powers++;
                 interval = 0;
@@ -582,9 +624,9 @@ public class GameScreen extends Page {
             }
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_6)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_5)) {
             // FreezeEnemies
-            if (powers[4]==0 && num_powers<2){
+            if (PowerupScreen.isPowerup5Owned && num_powers < 2){
                 if (message1==-1){
                     power_up_name1.setText("Power Up - Freeze Enemies");
                     message1 = 4;
@@ -596,6 +638,7 @@ public class GameScreen extends Page {
                 for(int i=1; i<ships.size();i++){
                     ships.get(i).setFreeze(true);
                 }
+                PowerupScreen.isPowerup5Owned = false;
                 powers[4] = durations[4];
                 num_powers++;
                 interval = 0;
@@ -614,9 +657,9 @@ public class GameScreen extends Page {
 
         }
 
-        if(Gdx.input.isKeyPressed(Input.Keys.NUM_7)) {
+        if(Gdx.input.isKeyPressed(Input.Keys.NUM_6)) {
             // More ship
-            if(powers[5]==0&& num_powers<2){
+            if(PowerupScreen.isPowerup6Owned && num_powers < 2){
                 if (message1==-1){
                     power_up_name1.setText("Power Up - More Ships");
                     message1 = 5;
@@ -626,6 +669,7 @@ public class GameScreen extends Page {
                     message2 = 5;
                 }
                 GameManager.addNPCMyShip();
+                PowerupScreen.isPowerup6Owned = false;
                 powers[5]=5;
                 num_powers++;
                 interval = 0;
