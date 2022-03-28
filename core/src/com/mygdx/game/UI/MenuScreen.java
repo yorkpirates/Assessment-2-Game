@@ -41,20 +41,23 @@ public class MenuScreen extends Page {
 
         float space = VIEWPORT_HEIGHT * 0.10f;
 
-        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg")));
+        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg")));
         Label l = new Label("Pirates the movie the game", parent.skin);
         l.setFontScale(2);
         t.add(l).top().spaceBottom(space * 0.5f);
         t.row();
 
+        TextButton play = new TextButton("Play", parent.skin);
+        t.add(play).top().size(100, 25);
+        t.row();
+
         final SelectBox<String> selectBox=new SelectBox<String>(parent.skin);
         selectBox.setItems("Select Difficulty","Easy","Normal","Hard");
 
-        t.add(selectBox).top().size(100, 25);
+        t.add(selectBox).top().size(100, 25).spaceBottom(space);
         t.row();
 
 
-        TextButton play = new TextButton("Play", parent.skin);
         play.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -75,11 +78,6 @@ public class MenuScreen extends Page {
                 GameManager.getPlayer().updateHealth();
             }
         });
-
-        t.add(play).top().size(100, 25).spaceBottom(space);
-        t.row();
-
-
 
 
         TextButton load = new TextButton("Load", parent.skin);
@@ -123,7 +121,7 @@ public class MenuScreen extends Page {
     public void resize(int width, int height) {
         super.resize(width, height);
         Table t = (Table) actors.get(0);
-        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg"))); // prevent the bg being stretched
+        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg"))); // prevent the bg being stretched
     }
     private void showLoadMenu(){
         if(System.getProperty("os.name").contains("Mac")){
