@@ -11,7 +11,7 @@ import jdk.internal.org.jline.utils.DiffHelper;
  * Player's ship entity.
  */
 public class Player extends Ship {
-
+    boolean reward_powerUp;
     /**
      * Adds ship with PlayerController component and sets its speed.
      *

@@ -18,6 +18,10 @@ public class Pirate extends Component {
     public static int health;
     public static int ammo;
     private final int attackDmg;
+    private boolean isImmortality;
+    private boolean isUnlimitedAmmo;
+    private boolean isShootEightDirections;
+    private boolean isBiggerDamage;
 
     /**
      * The enemy that is being targeted by the AI.

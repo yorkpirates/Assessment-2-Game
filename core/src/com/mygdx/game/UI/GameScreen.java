@@ -35,11 +35,12 @@ public class GameScreen extends Page {
     public static Label ammo;
     public static Label questName;
     public static Label questDesc;
+    private Label power_up_name1;
+    private Label power_up_time1;
     private Label power_up_name2;
     private Label power_up_time2;
     private Label warn1;
     private Label warn2;
-
 
 
     private float[] powers;
