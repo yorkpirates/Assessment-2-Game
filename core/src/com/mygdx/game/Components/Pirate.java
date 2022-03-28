@@ -18,6 +18,10 @@ public class Pirate extends Component {
     public static int health;
     public static int ammo;
     private final int attackDmg;
+    private boolean isImmortality;
+    private boolean isUnlimitedAmmo;
+    private boolean isShootEightDirections;
+    private boolean isBiggerDamage;
 
     /**
      * The enemy that is being targeted by the AI.
@@ -36,6 +40,10 @@ public class Pirate extends Component {
         attackDmg = starting.getInt("damage");
         ammo = starting.getInt("ammo");
         health = starting.getInt("health");
+        isUnlimitedAmmo = false;
+        isImmortality = false;
+        isShootEightDirections = false;
+        isBiggerDamage = false;
     }
 
     public void addTarget(Ship target) {
@@ -58,7 +66,25 @@ public class Pirate extends Component {
         this.factionId = factionId;
     }
 
+    public void setImmortality(boolean state){
+        isImmortality = state;
+    }
+
+    public void setUnlimitedAmmo(boolean state){
+        isUnlimitedAmmo = state;
+    }
+
+    public void setShootEightDirections(boolean state){
+        isShootEightDirections = state;
+    }
+
+    public void setBiggerDamage(boolean state){
+        isBiggerDamage = state;
+    }
     public void takeDamage(float dmg) {
+        if (isImmortality)
+            dmg = 0;
+
         health -= dmg;
         if (health <= 0) {
             health = 0;
@@ -75,8 +101,20 @@ public class Pirate extends Component {
         if (ammo == 0) {
             return;
         }
-        ammo--;
-        GameManager.shoot((Ship) parent, dir);
+        if(!isUnlimitedAmmo)
+            ammo--;
+        if(!isShootEightDirections)
+            GameManager.shoot((Ship) parent, dir);
+        else{
+            GameManager.shoot((Ship) parent, new Vector2(0, 1));
+            GameManager.shoot((Ship) parent, new Vector2(0, -1));
+            GameManager.shoot((Ship) parent, new Vector2(1, 0));
+            GameManager.shoot((Ship) parent, new Vector2(-1, 0));
+            GameManager.shoot((Ship) parent, new Vector2(1, 1));
+            GameManager.shoot((Ship) parent, new Vector2(-1, 1));
+            GameManager.shoot((Ship) parent, new Vector2(1, -1));
+            GameManager.shoot((Ship) parent, new Vector2(-1, -1));
+        }
     }
 
     /**
