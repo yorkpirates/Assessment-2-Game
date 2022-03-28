@@ -255,7 +255,6 @@ public class GameScreen extends Page {
      */
     @Override
     protected void CreateActors() {
-        texture = new Texture(Gdx.files.internal("timeline.jpg"));
         Table table = new Table();
         table.setFillParent(true);
         actors.add(table);
@@ -285,6 +284,8 @@ public class GameScreen extends Page {
         table_message.setFillParent(true);
         actors.add(table_message);
 
+
+        // Power Up Stuff
 
         power_up_name1 = new Label("", parent.skin);
         power_up_time1 = new Label("", parent.skin);
