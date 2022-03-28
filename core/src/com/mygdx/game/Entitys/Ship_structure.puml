@@ -1,0 +1,536 @@
+@startuml
+
+/' diagram meta data start
+config=StructureConfiguration;
+{
+  "projectClassification": {
+    "searchMode": "OpenProject", // OpenProject, AllProjects
+    "includedProjects": "",
+    "pathEndKeywords": "*.impl",
+    "isClientPath": "",
+    "isClientName": "",
+    "isTestPath": "",
+    "isTestName": "",
+    "isMappingPath": "",
+    "isMappingName": "",
+    "isDataAccessPath": "",
+    "isDataAccessName": "",
+    "isDataStructurePath": "",
+    "isDataStructureName": "",
+    "isInterfaceStructuresPath": "",
+    "isInterfaceStructuresName": "",
+    "isEntryPointPath": "",
+    "isEntryPointName": ""
+  },
+  "graphRestriction": {
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "removeByInheritance": "", // inheritance/annotation based filtering is done in a second step
+    "removeByAnnotation": "",
+    "removeByClassPackage": "", // cleanup the graph after inheritance/annotation based filtering is done
+    "removeByClassName": "",
+    "cutMappings": false,
+    "cutEnum": true,
+    "cutTests": true,
+    "cutClient": true,
+    "cutDataAccess": false,
+    "cutInterfaceStructures": false,
+    "cutDataStructures": false,
+    "cutGetterAndSetter": true,
+    "cutConstructors": true
+  },
+  "graphTraversal": {
+    "forwardDepth": 6,
+    "backwardDepth": 6,
+    "classPackageExcludeFilter": "",
+    "classPackageIncludeFilter": "",
+    "classNameExcludeFilter": "",
+    "classNameIncludeFilter": "",
+    "methodNameExcludeFilter": "",
+    "methodNameIncludeFilter": "",
+    "hideMappings": false,
+    "hideDataStructures": false,
+    "hidePrivateMethods": true,
+    "hideInterfaceCalls": true, // indirection: implementation -> interface (is hidden) -> implementation
+    "onlyShowApplicationEntryPoints": false // root node is included
+  },
+  "details": {
+    "aggregation": "GroupByClass", // ByClass, GroupByClass, None
+    "showClassGenericTypes": true,
+    "showMethods": true,
+    "showMethodParameterNames": true,
+    "showMethodParameterTypes": true,
+    "showMethodReturnType": true,
+    "showPackageLevels": 2,
+    "showDetailedClassStructure": true
+  },
+  "rootClass": "com.mygdx.game.Entitys.Ship"
+}
+diagram meta data end '/
+
+
+
+digraph g {
+    rankdir="TB"
+    splines=polyline
+    
+
+'nodes 
+subgraph cluster_104370703 { 
+   	label=mygdx
+	labeljust=l
+	fillcolor="#ececec"
+	style=filled
+   
+   subgraph cluster_1554244721 { 
+   	label=game
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   AINavigation1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)AINavigation</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   attributes: Attributes [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   behavior: SteeringBehavior&lt;Vector2&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   rb: RigidBody [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   steeringOutput: SteeringAcceleration&lt;Vector2&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   t: Transform [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ angleToVector(outVector: Vector2, angle: float): Vector2</TD></TR>
+<TR><TD ALIGN="LEFT" >- applySteering()</TD></TR>
+<TR><TD ALIGN="LEFT" >- getComps()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ newLocation(): Location&lt;Vector2&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stop()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ vectorToAngle(vector: Vector2): float</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Attributes1531959588[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Attributes</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+   boundingRadius: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   isTagged: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxAcc: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxAngAcc: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxAngSpd: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   maxSpd: float [1]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Building772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Building</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   buildingName: String [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   isFlag: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ BeginContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EndContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EnterTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ExitTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ create(pos: Vector2, name: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >- destroy()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+CannonBall772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)CannonBall</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   shooter: Ship [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   toggleLife: boolean [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ BeginContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EndContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EnterTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ExitTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ fire(pos: Vector2, dir: Vector2, sender: Ship)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeOnCollision()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Chest772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Chest</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+College772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)College</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   buildings: ArrayList&lt;Building&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ isAlive()</TD></TR>
+<TR><TD ALIGN="LEFT" >- spawn(colour: String)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Component1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Component</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   parent: Entity [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   reqsMet: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   requirements: ArrayList&lt;ComponentType&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   type: ComponentType [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ awake()</TD></TR>
+<TR><TD ALIGN="LEFT" >- checkRequirements()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ start()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Entity772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Entity</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   components: ArrayList&lt;Component&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   entityName: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addComponent(component: Component)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addComponents(components: Component...)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComponent(type: ComponentType): Component</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComponent(type: Class&lt;T&gt;): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getComponents(type: Class&lt;T&gt;): ArrayList&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ raiseEvents(events: ComponentEvent...)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+NPCShip772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)NPCShip</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   path: QueueFIFO&lt;Vector2&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >+   stateMachine: StateMachine&lt;NPCShip, EnemyState&gt; [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   timer: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ BeginContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EndContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EnterTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ExitTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ followTarget()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ goToTarget()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ stopMovement()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ wander()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Pirate1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Pirate</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   attackDmg: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   factionId: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   isAlive: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   targets: QueueFIFO&lt;Ship&gt; [0..*]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addAmmo(newAmmo: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addPlunder(money: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addTarget(target: Ship)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ canAttack(): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ kill()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeTarget()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ shoot(dir: Vector2)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ takeDamage(dmg: float)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ targetCount(): int</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Player772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Player</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ updateHealth()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+PlayerController1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)PlayerController</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   player: Player [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   speed: float [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Renderable1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Renderable</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   isVisible: boolean [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   sprite: Sprite [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ hide()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ show()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toggleVisibility()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+RigidBody1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)RigidBody</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   bodyId: int [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   halfDim: Vector2 [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ addTrigger(radius: float, data: Object)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ applyForce(force: Vector2)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Ship772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Ship</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   currentDir: Vector2 [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ BeginContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EndContact(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ EnterTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ ExitTrigger(info: CollisionInfo)</TD></TR>
+<TR><TD ALIGN="LEFT" >- getShipDirection(dir: Vector2): String</TD></TR>
+<TR><TD ALIGN="LEFT" >+ plunder(money: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ shoot(dir: Vector2)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ shoot()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Text1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Text</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   font: BitmapFont [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   fontColour: Vector3 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   offset: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   position: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   text: String [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+TileMap1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)TileMap</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >#   map: TiledMap [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >#   renderer: TiledMapRenderer [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ cleanUp()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getCell(pos: Vector2): Cell</TD></TR>
+<TR><TD ALIGN="LEFT" >+ render()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ update()</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+Transform1341037606[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)Transform</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   position: Vector2 [0..1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   rotation: float [1]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   scale: Vector2 [0..1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ angleToVector(outVector: Vector2, angle: float): Vector2</TD></TR>
+<TR><TD ALIGN="LEFT" >+ getLocation()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ newLocation(): Location&lt;Vector2&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ vectorToAngle(vector: Vector2): float</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+
+WorldMap772905440[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)WorldMap</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+
+subgraph cluster_950437906 { 
+   	label=utils
+	labeljust=l
+	fillcolor="#d8d8d8"
+	style=filled
+   
+   QueueFIFO681539803[
+	label=<<TABLE BORDER="1" CELLBORDER="0" CELLPADDING="4" CELLSPACING="0">
+<TR><TD ALIGN="LEFT" >(C)QueueFIFO&lt;T&gt;</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >-   data: ArrayList&lt;T&gt; [0..*]</TD></TR>
+<TR><TD ALIGN="LEFT" >-   topIndex: int [1]</TD></TR>
+<HR/>
+<TR><TD ALIGN="LEFT" >+ add(t: T): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ addAll(c: Collection&lt;? extends T&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ clear()</TD></TR>
+<TR><TD ALIGN="LEFT" >+ contains(o: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ containsAll(c: Collection&lt;?&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ element(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ iterator(): Iterator&lt;T&gt;</TD></TR>
+<TR><TD ALIGN="LEFT" >+ offer(t: T): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ peek(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ poll(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ pop(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(o: Object): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(index: int)</TD></TR>
+<TR><TD ALIGN="LEFT" >+ remove(): T</TD></TR>
+<TR><TD ALIGN="LEFT" >+ removeAll(c: Collection&lt;?&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ retainAll(c: Collection&lt;?&gt;): boolean</TD></TR>
+<TR><TD ALIGN="LEFT" >+ size(): int</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toArray(): Object[]</TD></TR>
+<TR><TD ALIGN="LEFT" >+ toArray(a: T1[]): T1[]</TD></TR>
+</TABLE>>
+	style=filled
+	margin=0
+	shape=plaintext
+	fillcolor="#FFFFFF"
+];
+} 
+} 
+
+'edges    
+AINavigation1341037606 -> Attributes1531959588[label="attributes
+[0..1]"];
+AINavigation1341037606 -> RigidBody1341037606[label="rb
+[0..1]"];
+AINavigation1341037606 -> Transform1341037606[label="t
+[0..1]"];
+CannonBall772905440 -> Ship772905440[label="shooter
+[0..1]"];
+College772905440 -> Building772905440[label="buildings
+[0..*]"];
+Component1341037606 -> AINavigation1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> Entity772905440[label="parent
+[0..1]"];
+Component1341037606 -> Pirate1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> PlayerController1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> Renderable1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> RigidBody1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> Text1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> TileMap1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Component1341037606 -> Transform1341037606[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> Building772905440[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> CannonBall772905440[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> Chest772905440[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> College772905440[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> Component1341037606[label="components
+[0..*]"];
+Entity772905440 -> Ship772905440[arrowhead=none, arrowtail=empty, dir=both];
+Entity772905440 -> WorldMap772905440[arrowhead=none, arrowtail=empty, dir=both];
+NPCShip772905440 -> Building772905440[arrowhead=none, arrowtail=empty, dir=both];
+NPCShip772905440 -> CannonBall772905440[arrowhead=none, arrowtail=empty, dir=both];
+NPCShip772905440 -> QueueFIFO681539803[label="path
+[0..*]"];
+NPCShip772905440 -> Ship772905440[arrowhead=none, arrowtail=empty, dir=both];
+Pirate1341037606 -> QueueFIFO681539803[label="targets
+[0..*]"];
+Pirate1341037606 -> Ship772905440[label="targets
+[0..*]"];
+PlayerController1341037606 -> Player772905440[label="player
+[0..1]"];
+Ship772905440 -> NPCShip772905440[arrowhead=none, arrowtail=empty, dir=both];
+Ship772905440 -> Player772905440[arrowhead=none, arrowtail=empty, dir=both];
+    
+}
+@enduml

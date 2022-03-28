@@ -182,21 +182,25 @@ public class Ship extends Entity implements CollisionCallBack {
     public void EnterTrigger(CollisionInfo info) {
         if (this instanceof Player && !(info.b instanceof Player)) {
             ((CollisionCallBack) info.b).EnterTrigger(info);
+
         }
+
         if (info.a instanceof CannonBall){
-            CannonBall x = (CannonBall) info.a;
-            Ship hitship = (Ship) info.b;
-            if(hitship != x.getShooter()){
-
-                hitship.setHealth(hitship.getHealth()-5);
-                System.out.println(hitship.getHealth());
-
+            CannonBall ball = (CannonBall) info.a;
+            if(ball.getShooter() != this){
+                Pirate pirate = getComponent(Pirate.class);
+                pirate.takeDamage(5);
+                //setHealth(getHealth()-5);
+                ball.kill();
+                System.out.print(getName());
+                System.out.println(getHealth());
             }
-            ((CannonBall) info.a).kill();
-            if(info.b instanceof CannonBall){
-                System.out.println("FUCK");
-            }
+
+
         }
+
+
+
 
     }
 

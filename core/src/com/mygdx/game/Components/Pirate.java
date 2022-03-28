@@ -15,7 +15,7 @@ public class Pirate extends Component {
     private int factionId;
     public static int plunder;
     protected boolean isAlive;
-    public static int health;
+    public  int health;
     public static int ammo;
     private final int attackDmg;
 

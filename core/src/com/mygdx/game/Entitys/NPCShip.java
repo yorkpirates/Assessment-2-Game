@@ -18,6 +18,7 @@ import com.mygdx.utils.QueueFIFO;
 import com.mygdx.utils.Utilities;
 
 import java.util.Objects;
+import java.util.Vector;
 
 /**
  * NPC ship entity class.
@@ -76,7 +77,11 @@ public class NPCShip extends Ship implements CollisionCallBack {
         AINavigation nav = getComponent(AINavigation.class);
         if(stateMachine.isInState(EnemyState.ATTACK)){
             if (timer ==100){
-                shoot();
+                Vector2 target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
+                GameManager.shoot(this, target);
+                
+                //shoot();
+
                 timer = 0;
             }
             else {
@@ -149,10 +154,10 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
+        super.EnterTrigger(info);
         if (!(info.a instanceof Ship)) {
             return;
         }
-        super.EnterTrigger(info);
         Ship other = (Ship) info.a;
         if (Objects.equals(other.getComponent(Pirate.class).getFaction().getName(), getComponent(Pirate.class).getFaction().getName())) {
             // is the same faction

@@ -95,7 +95,7 @@ public class CannonBall extends Entity implements CollisionCallBack {
      * Marks cannonball for removal on next update.
      */
     public void kill() {
-        toggleLife = false;
+        toggleLife = true;
     }
 
     public Ship getShooter() {
