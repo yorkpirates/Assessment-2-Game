@@ -66,7 +66,7 @@ public final class GameManager {
     }
 
     /**
-     * called every fram checks id the quests are completed
+     * called every frame checks id the quests are completed
      */
     public static void update() {
         QuestManager.checkCompleted();
@@ -79,6 +79,10 @@ public final class GameManager {
      */
     public static Player getPlayer() {
         return (Player) ships.get(0);
+    }
+
+    public static ArrayList<Ship> getShips(){
+        return ships;
     }
 
     /**
@@ -125,6 +129,13 @@ public final class GameManager {
         e.setFaction(factionId);
         ships.add(e);
         return e;
+    }
+
+
+    public static void addNPCMyShip(){
+        NPCShip e = new NPCShip();
+        e.setFaction(1);
+        ships.add(e);
     }
 
     /**

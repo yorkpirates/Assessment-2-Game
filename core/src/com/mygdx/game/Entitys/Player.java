@@ -22,7 +22,7 @@ public class Player extends Ship {
 
         PlayerController pc = new PlayerController(this, speed);
         addComponent(pc);
-
+        reward_powerUp = false;
         setName("Player");
     }
 
@@ -57,5 +57,13 @@ public class Player extends Ship {
     }
     public void setAmmo(Integer ammo){
         getComponent(Pirate.class).setAmmo(ammo);
+    }
+
+    public void setReward_powerUp(boolean reward_powerUp){
+        this.reward_powerUp = reward_powerUp;
+    }
+
+    public boolean getReward_powerUp(){
+        return reward_powerUp;
     }
 }

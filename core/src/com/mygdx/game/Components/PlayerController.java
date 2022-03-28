@@ -17,6 +17,7 @@ public class PlayerController extends Component {
     private Player player;
     private float speed;
 
+
     public PlayerController() {
         super();
         type = ComponentType.PlayerController;
@@ -31,6 +32,7 @@ public class PlayerController extends Component {
         this();
         this.player = player;
         this.speed = speed;
+
     }
 
     /**
@@ -68,6 +70,7 @@ public class PlayerController extends Component {
             // unit dir to fire
             ((Ship) parent).shoot();
         }
+
     }
 
     /**
@@ -95,4 +98,6 @@ public class PlayerController extends Component {
         }
         return dir;
     }
+
+
 }
