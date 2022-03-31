@@ -191,9 +191,11 @@ public class GameScreen extends Page {
         ammo.setText(String.valueOf(p.getAmmo()));
         if (!QuestManager.anyQuests()) {
             parent.end.win();
+            parent.setScreen(parent.end);}
+        else if(!p.isAlive()){
             parent.setScreen(parent.end);
-
-        } else {
+        }
+         else {
             Quest q = QuestManager.currentQuest();
             /*if(Objects.equals(prevQuest, "")) {
                 prevQuest = q.getDescription();
