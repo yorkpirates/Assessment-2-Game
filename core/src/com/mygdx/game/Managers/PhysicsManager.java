@@ -24,7 +24,7 @@ public final class PhysicsManager {
     public static World box2DWorld;
     private static ArrayList<Body> box2DBodies;
     private static Box2DDebugRenderer debug;
-
+    private static ArrayList<Integer> toRemove;
     public static void Initialize() {
         Initialize(false);
     }
@@ -45,6 +45,7 @@ public final class PhysicsManager {
         if (drawDebug) {
             debug = new Box2DDebugRenderer(true, false, true, true, false, true);
         }
+        toRemove = new ArrayList<Integer>();
     }
 
     public static int createBody(BodyDef bDef, FixtureDef fDef, Object userData) {
@@ -55,6 +56,9 @@ public final class PhysicsManager {
         b.setUserData(userData);
         box2DBodies.add(b);
         return box2DBodies.size();
+    }
+    public static void deleteBody(int index){
+        toRemove.add(index);
     }
 
     private static Shape tile_getShape(Rectangle rectangle) {
@@ -119,6 +123,14 @@ public final class PhysicsManager {
     public static void update() {
         tryInit();
         box2DWorld.step(PHYSICS_TIME_STEP, 6, 2);
+        if(!toRemove.isEmpty()){
+            for (Integer i : toRemove) {
+                Body x = getBody(i);
+                x.setActive(false);
+
+            }
+            toRemove.clear();
+        }
 
         if (debug != null) {
             debug.render(box2DWorld, RenderingManager.getCamera().combined);
@@ -132,4 +144,6 @@ public final class PhysicsManager {
             debug.dispose();
         }
     }
+
+
 }

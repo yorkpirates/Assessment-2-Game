@@ -7,11 +7,9 @@ import com.badlogic.gdx.ai.steer.behaviors.Arrive;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.AI.EnemyState;
-import com.mygdx.game.Components.AINavigation;
-import com.mygdx.game.Components.Pirate;
-import com.mygdx.game.Components.RigidBody;
-import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Components.*;
 import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.Physics.CollisionCallBack;
 import com.mygdx.game.Physics.CollisionInfo;
 import com.mygdx.utils.QueueFIFO;
@@ -72,6 +70,9 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void update() {
+        if(!isAlive()){
+            return;
+        }
         super.update();
         stateMachine.update();
         AINavigation nav = getComponent(AINavigation.class);
@@ -189,5 +190,15 @@ public class NPCShip extends Ship implements CollisionCallBack {
                 break;
             }
         }
+    }
+    @Override
+    public void ShipDeath(){
+        stopMovement();
+        getComponent(Renderable.class).hide();
+
+
+        RigidBody rb = getComponent(RigidBody.class);
+        rb.removeFromPhysicsWorld();
+
     }
 }

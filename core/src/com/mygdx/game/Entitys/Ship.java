@@ -175,6 +175,9 @@ public class Ship extends Entity implements CollisionCallBack {
 
     }
 
+
+    public void ShipDeath(){}
+
     /**
      * if called on a Player against anything else call it on the other thing
      */
@@ -190,12 +193,13 @@ public class Ship extends Entity implements CollisionCallBack {
             if(ball.getShooter() != this){
                 Pirate pirate = getComponent(Pirate.class);
                 pirate.takeDamage(5);
-                //setHealth(getHealth()-5);
                 ball.kill();
                 System.out.print(getName());
                 System.out.println(getHealth());
             }
-
+        if(!isAlive()){
+            ShipDeath();
+        }
 
         }
 
