@@ -77,6 +77,10 @@ public class RigidBody extends Component {
 
         shape.dispose();
     }
+    public void removeFromPhysicsWorld(){
+
+        PhysicsManager.deleteBody(bodyId);
+    }
 
     /**
      * Adds a new circular fixture to the body as a trigger

@@ -190,12 +190,17 @@ public class Ship extends Entity implements CollisionCallBack {
     @Override
     public void BeginContact(CollisionInfo info) {
 
+
+
     }
 
     @Override
     public void EndContact(CollisionInfo info) {
 
     }
+
+
+    public void ShipDeath(){}
 
     /**
      * if called on a Player against anything else call it on the other thing
@@ -206,6 +211,25 @@ public class Ship extends Entity implements CollisionCallBack {
             ((CollisionCallBack) info.b).EnterTrigger(info);
 
         }
+
+        if (info.a instanceof CannonBall){
+            CannonBall ball = (CannonBall) info.a;
+            if(ball.getShooter() != this){
+                Pirate pirate = getComponent(Pirate.class);
+                pirate.takeDamage(5);
+                ball.kill();
+                System.out.print(getName());
+                System.out.println(getHealth());
+            }
+        if(!isAlive()){
+            ShipDeath();
+        }
+
+        }
+
+
+
+
     }
 
     /**

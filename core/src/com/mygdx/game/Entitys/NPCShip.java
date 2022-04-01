@@ -1,22 +1,22 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ai.fsm.DefaultStateMachine;
 import com.badlogic.gdx.ai.fsm.StateMachine;
 import com.badlogic.gdx.ai.steer.behaviors.Arrive;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.AI.EnemyState;
-import com.mygdx.game.Components.AINavigation;
-import com.mygdx.game.Components.Pirate;
-import com.mygdx.game.Components.RigidBody;
-import com.mygdx.game.Components.Transform;
+import com.mygdx.game.Components.*;
 import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.Physics.CollisionCallBack;
 import com.mygdx.game.Physics.CollisionInfo;
 import com.mygdx.utils.QueueFIFO;
 import com.mygdx.utils.Utilities;
 
 import java.util.Objects;
+import java.util.Vector;
 
 /**
  * NPC ship entity class.
@@ -25,6 +25,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
     public StateMachine<NPCShip, EnemyState> stateMachine;
     private static JsonValue AISettings;
     private final QueueFIFO<Vector2> path;
+    private int timer;
 
     /**
      * Creates an initial state machine
@@ -52,7 +53,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
 
         // agro trigger
         rb.addTrigger(Utilities.tilesToDistance(starting.getFloat("argoRange_tiles")), "agro");
-
+        timer = 0;
     }
 
     /**
@@ -69,9 +70,27 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void update() {
+        if(!isAlive()){
+            return;
+        }
         super.update();
         stateMachine.update();
+        AINavigation nav = getComponent(AINavigation.class);
+        if(stateMachine.isInState(EnemyState.ATTACK)){
+            if (timer ==100){
+                Vector2 target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
+                GameManager.shoot(this, target);
+                
+                //shoot();
 
+                timer = 0;
+            }
+            else {
+                timer ++;
+            }
+
+
+        }
         // System.out.println(getComponent(Pirate.class).targetCount());
     }
 
@@ -136,6 +155,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
+        super.EnterTrigger(info);
         if (!(info.a instanceof Ship)) {
             return;
         }
@@ -147,6 +167,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
         // add the new collision as a new target
         Pirate pirate = getComponent(Pirate.class);
         pirate.addTarget(other);
+
     }
 
     /**
@@ -156,6 +177,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
+
         if (!(info.a instanceof Ship)) {
             return;
         }
@@ -168,5 +190,15 @@ public class NPCShip extends Ship implements CollisionCallBack {
                 break;
             }
         }
+    }
+    @Override
+    public void ShipDeath(){
+        stopMovement();
+        getComponent(Renderable.class).hide();
+
+
+        RigidBody rb = getComponent(RigidBody.class);
+        rb.removeFromPhysicsWorld();
+
     }
 }
