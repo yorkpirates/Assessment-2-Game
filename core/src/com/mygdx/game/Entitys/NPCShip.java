@@ -107,7 +107,7 @@ public class NPCShip extends Ship implements CollisionCallBack {
      * creates a new steering behaviour that will make the NPC beeline for the target doesn't factor in obstetrical
      */
     public void followTarget() {
-        if (getTarget() == null) {
+        if (getTarget() == null || getFreeze()) {
             stopMovement();
             return;
         }

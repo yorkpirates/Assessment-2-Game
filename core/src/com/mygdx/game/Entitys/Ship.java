@@ -25,7 +25,7 @@ public class Ship extends Entity implements CollisionCallBack {
     public static ObjectMap<Vector2, String> shipDirections;
 
     private final Vector2 currentDir;
-
+    private boolean isFreeze;
     /**
      * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
      */
@@ -33,7 +33,7 @@ public class Ship extends Entity implements CollisionCallBack {
         super(4);
         currentDir = new Vector2();
         setName("Ship (" + shipCount++ + ")"); // each ship has a unique name
-
+        isFreeze = false;
         if (shipDirections == null) {
             shipDirections = new ObjectMap<>();
             shipDirections.put(new Vector2(0, 1), "-up");
@@ -81,6 +81,13 @@ public class Ship extends Entity implements CollisionCallBack {
         setShipDirection("-up");
     }
 
+    public void  setFreeze(boolean state){
+        isFreeze = state;
+    }
+
+    public boolean getFreeze(){
+        return isFreeze;
+    }
     /**
      * gets the string representation of the direction the ship is facing
      *
@@ -151,6 +158,23 @@ public class Ship extends Entity implements CollisionCallBack {
     public void shoot() {
         getComponent(Pirate.class).shoot(currentDir);
     }
+
+    public void tempImmortality(boolean state){
+        getComponent(Pirate.class).setImmortality(state);
+    }
+
+    public void unlimitedAmmo(boolean state){
+        getComponent(Pirate.class).setUnlimitedAmmo(state);
+    }
+
+    public void shoot8Directions(boolean state){
+        getComponent(Pirate.class).setShootEightDirections(state);
+    }
+
+    public void biggerDamage(boolean state){
+        getComponent(Pirate.class).setBiggerDamage(state);
+    }
+
 
     /**
      * @return copy of the transform's position

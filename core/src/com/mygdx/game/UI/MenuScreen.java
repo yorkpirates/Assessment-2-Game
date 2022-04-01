@@ -20,6 +20,7 @@ import javax.swing.*;
 
 import java.awt.*;
 import java.io.File;
+import java.io.FileNotFoundException;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -41,20 +42,23 @@ public class MenuScreen extends Page {
 
         float space = VIEWPORT_HEIGHT * 0.10f;
 
-        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg")));
+        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg")));
         Label l = new Label("Pirates the movie the game", parent.skin);
         l.setFontScale(2);
         t.add(l).top().spaceBottom(space * 0.5f);
         t.row();
 
+        TextButton play = new TextButton("Play", parent.skin);
+        t.add(play).top().size(100, 25);
+        t.row();
+
         final SelectBox<String> selectBox=new SelectBox<String>(parent.skin);
         selectBox.setItems("Select Difficulty","Easy","Normal","Hard");
 
-        t.add(selectBox).top().size(100, 25);
+        t.add(selectBox).top().size(100, 25).spaceBottom(space);
         t.row();
 
 
-        TextButton play = new TextButton("Play", parent.skin);
         play.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
@@ -76,17 +80,17 @@ public class MenuScreen extends Page {
             }
         });
 
-        t.add(play).top().size(100, 25).spaceBottom(space);
-        t.row();
-
-
-
 
         TextButton load = new TextButton("Load", parent.skin);
         load.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                showLoadMenu();
+                    try {
+                        JOptionPane.showMessageDialog(null,"TEST");
+                        showLoadMenu();
+                    } catch (FileNotFoundException e) {
+                        e.printStackTrace();
+                    }
             }
         });
         t.add(load).top().size(100, 25).spaceBottom(space);
@@ -123,15 +127,23 @@ public class MenuScreen extends Page {
     public void resize(int width, int height) {
         super.resize(width, height);
         Table t = (Table) actors.get(0);
-        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("menuBG.jpg"))); // prevent the bg being stretched
+        t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg"))); // prevent the bg being stretched
     }
-    private void showLoadMenu(){
+    private void showLoadMenu() throws FileNotFoundException {
         if(System.getProperty("os.name").contains("Mac")){
-            //Choose A
-            System.setProperty("apple.awt.fileDialogForDirectories", "true");
-            FileDialog fileDialog = new FileDialog((java.awt.Frame)null,"Select file");
-            fileDialog.setVisible(true);
-            System.out.println("If you want to load GAMES on mac then due to apple 20% policies we will need to have 20% of the cost of this product wired to our accounts in Monero thanks ♥");
+            //Get ABSOLOUTE file for mac
+            File f = new File("SAVED_GAME.xml");
+
+            if(!f.exists()){
+                throw new FileNotFoundException();
+            }
+            SaveObject.readXML("SAVED_GAME.xml");
+            //to be removed upon implementation in save
+            DifficultyManager.SelectEasy();
+            parent.setScreen(parent.game);
+            //to be removed upon implementation in save
+            GameManager.getPlayer().updateHealth();
+
         }
         else{
             JFileChooser fileChooser = new JFileChooser();

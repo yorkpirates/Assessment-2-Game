@@ -1,5 +1,6 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Game;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.JsonValue;
 import com.mygdx.game.Components.Pirate;
@@ -16,6 +17,8 @@ import java.util.ArrayList;
 public class College extends Entity {
     private static ArrayList<String> buildingNames;
     private final ArrayList<Building> buildings;
+    private int i;
+    private Vector2 target;
 
     public College() {
         super();
@@ -24,6 +27,7 @@ public class College extends Entity {
         buildingNames.add("big");
         buildingNames.add("small");
         buildingNames.add("clock");
+        i = 0;
         Transform t = new Transform();
         Pirate p = new Pirate();
         addComponents(t, p);
@@ -97,9 +101,23 @@ public class College extends Entity {
         }
     }
 
+    public void shoot(Vector2 target) {
+        GameManager.shoot2(this, target);
+    }
+
+    public Vector2 getPosition() {
+        return getComponent(Transform.class).getPosition().cpy();
+    }
+
     @Override
     public void update() {
         super.update();
         isAlive();
+        if (i == 100) {
+            target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
+            shoot(target);
+            i = 0;
+        }
+        i++;
     }
 }
