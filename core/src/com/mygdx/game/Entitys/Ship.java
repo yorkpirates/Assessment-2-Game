@@ -221,16 +221,22 @@ public class Ship extends Entity implements CollisionCallBack {
                 System.out.print(getName());
                 System.out.println(getHealth());
             }
-        if(!isAlive()){
-            ShipDeath();
+             if(!isAlive()){
+                ShipDeath();
+            }
+
+        } else if (info.a instanceof CannonBallCollege) {
+            CannonBallCollege ball = (CannonBallCollege) info.a;
+            Pirate pirate = getComponent(Pirate.class);
+            pirate.takeDamage(15);
+            ball.kill();
+            System.out.print(getName());
+            System.out.println(getHealth());
+            if (!isAlive()) {
+                ShipDeath();
+            }
         }
-
         }
-
-
-
-
-    }
 
     /**
      * if called on a Player against anything else call it on the other thing
