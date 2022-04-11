@@ -25,6 +25,8 @@ public class Weather extends Entity implements CollisionCallBack {
     public static ObjectMap<Vector2, String> shipDirections;
 
     private final Vector2 currentDir;
+    RigidBody rb;
+    int count = 0;
     /**
      * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
      */
@@ -45,11 +47,11 @@ public class Weather extends Entity implements CollisionCallBack {
         }
 
         Transform t = new Transform();
-        t.setPosition(800, 800);
+        t.setPosition(900, 800);
         Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
-        RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
+        rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
         rb.setCallback(this);
-        
+
         addComponents(t, r, rb);
     }
 
@@ -65,6 +67,23 @@ public class Weather extends Entity implements CollisionCallBack {
             return shipDirections.get(dir);
         }
         return "";
+    }
+
+    private void moveWeather(Vector2 dir) {
+        rb.setVelocity(dir);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (count == 50) {
+            float x = (float) Math.floor(Math.random()*3) - 1;
+            float y = (float) Math.floor(Math.random()*3) - 1;
+            Vector2 dir = new Vector2(x * 1000, y * 1000);
+            moveWeather(dir);
+            count = 0;
+        }
+        count++;
     }
 
     /**
