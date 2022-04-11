@@ -79,23 +79,13 @@ public class Weather extends Entity implements CollisionCallBack {
         if (count == 50) {
             float x = (float) Math.floor(Math.random()*3) - 1;
             float y = (float) Math.floor(Math.random()*3) - 1;
-            Vector2 dir = new Vector2(x * 10, y * 10);
+            Vector2 dir = new Vector2(x * 1000, y * 1000);
             moveWeather(dir);
             count = 0;
         }
         count++;
     }
 
-    /**
-     * @return copy of the transform's position
-     */
-//    public Vector2 getPosition() {
-//        return getComponent(Transform.class).getPosition().cpy();
-//    }
-
-//    public void setPosition(Float x,Float y){
-//        getComponent(Transform.class).setPosition(x,y);
-//    }
 
     @Override
     public void BeginContact(CollisionInfo info) {
@@ -112,16 +102,9 @@ public class Weather extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-        if (this instanceof Weather && !(info.b instanceof Weather)) {
-            ((CollisionCallBack) info.b).EnterTrigger(info);
+        if (this instanceof Weather && !(info.a instanceof Weather)) {
+            ((CollisionCallBack) info.a).EnterTrigger(info);
         }
-
-//        System.out.println("collide");
-//        if (info.b instanceof Ship){
-//            System.out.println("rah");
-//            Pirate pirate = getComponent(Pirate.class);
-//            pirate.takeDamage(10);
-//        }
     }
 
     /**
@@ -129,8 +112,8 @@ public class Weather extends Entity implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-        if (this instanceof Weather && !(info.b instanceof Weather)) {
-            ((CollisionCallBack) info.b).ExitTrigger(info);
+        if (this instanceof Weather && !(info.a instanceof Weather)) {
+            ((CollisionCallBack) info.a).ExitTrigger(info);
         }
     }
 }

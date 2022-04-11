@@ -204,9 +204,10 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-//        if (this instanceof Player && !(info.b instanceof Player)) {
-//            ((CollisionCallBack) info.b).EnterTrigger(info);
-//        }
+        if (this instanceof Player && !(info.b instanceof Player) && !(info.b instanceof Weather)) {
+                ((CollisionCallBack) info.b).EnterTrigger(info);
+        }
+
 
         if (info.a instanceof CannonBall){
             CannonBall ball = (CannonBall) info.a;
@@ -217,25 +218,21 @@ public class Ship extends Entity implements CollisionCallBack {
                 System.out.print(getName());
                 System.out.println(getHealth());
             }
-            if(!isAlive()){
-                ShipDeath();
-            }
         }
 
-        if (info.a instanceof Weather){
+        if (info.b instanceof Weather){
             System.out.println("rah");
-            Weather weather = (Weather) info.a;
+            Weather weather = (Weather) info.b;
             Pirate pirate = getComponent(Pirate.class);
             pirate.takeDamage(10);
             System.out.print(getName());
             System.out.println(getHealth());
-
-            if(!isAlive()){
-                ShipDeath();
-            }
+            System.out.println(getHealth());
         }
 
-
+        if(!isAlive()){
+            ShipDeath();
+        }
 
     }
 
