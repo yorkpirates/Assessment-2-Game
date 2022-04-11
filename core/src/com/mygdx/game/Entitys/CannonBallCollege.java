@@ -43,7 +43,7 @@ public class CannonBallCollege extends Entity implements CollisionCallBack {
     @Override
     public void update() {
         super.update();
-//        removeOnCollision();
+        removeOnCollision();
     }
 
     /**
@@ -60,13 +60,6 @@ public class CannonBallCollege extends Entity implements CollisionCallBack {
             rb.setVelocity(0, 0);
             toggleLife = false;
         }
-        /*else{
-            age += EntityManager.getDeltaTime();
-        }
-        if(age > MAX_AGE) {
-            age = 0;
-            kill();
-        }*/
     }
 
     /**
@@ -95,7 +88,7 @@ public class CannonBallCollege extends Entity implements CollisionCallBack {
      * Marks cannonball for removal on next update.
      */
     public void kill() {
-        toggleLife = false;
+        toggleLife = true;
     }
 
     public College getShooter() {
