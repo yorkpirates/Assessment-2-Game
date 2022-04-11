@@ -19,6 +19,7 @@ import java.util.ArrayList;
 public final class GameManager {
     private static boolean initialized = false;
     private static ArrayList<Faction> factions;
+    public static ArrayList<Weather> weathers;
     public static ArrayList<Ship> ships;
     public static ArrayList<College> colleges;
 
@@ -39,9 +40,9 @@ public final class GameManager {
         currentElement = 0;
         settings = new JsonReader().
                 parse(Gdx.files.internal("GameSettings.json"));
-
         factions = new ArrayList<>();
         ships = new ArrayList<>();
+        weathers = new ArrayList<>();
         ballCache = new ArrayList<>(cacheSize);
         ballCache2 = new ArrayList<>(cacheSize);
         colleges = new ArrayList<>();
@@ -93,6 +94,7 @@ public final class GameManager {
     public static void SpawnGame(int mapId) {
         CreateWorldMap(mapId);
         CreatePlayer();
+        CreateWeather();
         final int cnt = settings.get("factionDefaults").getInt("shipCount");
         for (int i = 0; i < factions.size(); i++) {
             CreateCollege(i + 1);
@@ -115,6 +117,16 @@ public final class GameManager {
         Player p = new Player();
         p.setFaction(1);
         ships.add(p);
+    }
+
+    /**
+     * Creates weather
+     */
+    public static Weather CreateWeather() {
+        tryInit();
+        Weather e = new Weather();
+        weathers.add(e);
+        return e;
     }
 
     /**

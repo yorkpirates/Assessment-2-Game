@@ -113,7 +113,7 @@ public class College extends Entity {
     public void update() {
         super.update();
         isAlive();
-        if (i == 100) {
+        if (i == 50) {
             target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
             shoot(target);
             i = 0;
