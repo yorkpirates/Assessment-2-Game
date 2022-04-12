@@ -77,6 +77,10 @@ public final class SaveObject  {
         xmlDoc.writeCharacters(String.valueOf(index));
         xmlDoc.writeEndElement();
 
+        xmlDoc.writeStartElement("Health");
+        xmlDoc.writeCharacters(String.valueOf(ship.getHealth()));
+        xmlDoc.writeEndElement();
+
         xmlDoc.writeEndElement();
     }
     private static void writeGamedatatoXML(XMLStreamWriter xmlDoc,Player player) throws XMLStreamException{
@@ -143,9 +147,7 @@ public final class SaveObject  {
 
     private static void placeShip(XMLEventReader eventReader) throws XMLStreamException {
         //skip through the xml till we find data values
-        while (! eventReader.peek().isCharacters()){
-            eventReader.nextEvent();
-        }
+        Next(eventReader);
         XMLEvent event = eventReader.nextEvent();
 
         Characters chars = event.asCharacters();
@@ -164,9 +166,27 @@ public final class SaveObject  {
         event = eventReader.nextEvent();
         chars = event.asCharacters();
         int index = Integer.parseInt(chars.getData()) ;
-        GameManager.ships.get(index).setPosition(x,y);
+        while (! eventReader.peek().isCharacters()){
+            eventReader.nextEvent();
+        }
+        event = eventReader.nextEvent();
+        chars = event.asCharacters();
+        int health = Integer.parseInt(chars.getData());
 
+
+        GameManager.ships.get(index).setPosition(x,y);
+        GameManager.ships.get(index).setHealth(health);
+        if(health<=0){
+            GameManager.ships.get(index).ShipDeath();
+        }
     }
+
+    private static void Next(XMLEventReader eventReader) throws XMLStreamException {
+        while (! eventReader.peek().isCharacters()){
+            eventReader.nextEvent();
+        }
+    }
+
     private static void loadGameData(XMLEventReader eventReader) throws XMLStreamException {
         while (! eventReader.peek().isCharacters()){
             eventReader.nextEvent();
