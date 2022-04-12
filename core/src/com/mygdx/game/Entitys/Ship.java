@@ -214,7 +214,7 @@ public class Ship extends Entity implements CollisionCallBack {
 
         if (info.a instanceof CannonBall){
             CannonBall ball = (CannonBall) info.a;
-            if(ball.getShooter() != this){
+            if(ball.getShooter() != this & (ball.getShooter().getComponent(Pirate.class).getFaction() != this.getComponent(Pirate.class).getFaction())){
                 Pirate pirate = getComponent(Pirate.class);
                 pirate.takeDamage(5);
                 ball.kill();

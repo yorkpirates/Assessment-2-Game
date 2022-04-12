@@ -18,6 +18,12 @@ public final class SaveObject  {
      */
 
     //uses STAX parser
+
+    /**
+     * A method which saves the Game to XML using a STAX parser
+     *
+     * @param path The path to where the file will be saved
+     */
     public static void writeXMl(String path){
 
         try{
@@ -62,6 +68,14 @@ public final class SaveObject  {
 
     }
 
+    /**
+     * Takes the  Ship and writes it to XML
+     *
+     * @param xmlDoc The Document which is being written to
+     * @param ship  The Ship object which we want to save in XML
+     * @param index The index of the ship
+     * @throws XMLStreamException
+     */
     private static void writeShiptoXML(XMLStreamWriter xmlDoc,Ship ship,int index) throws XMLStreamException {
         xmlDoc.writeStartElement("position");
 
@@ -77,8 +91,20 @@ public final class SaveObject  {
         xmlDoc.writeCharacters(String.valueOf(index));
         xmlDoc.writeEndElement();
 
+        xmlDoc.writeStartElement("Health");
+        xmlDoc.writeCharacters(String.valueOf(ship.getHealth()));
+        xmlDoc.writeEndElement();
+
         xmlDoc.writeEndElement();
     }
+
+    /**
+     * Method that writes game data to XML
+     *
+     * @param xmlDoc The Document which is being written to
+     * @param player The player Object which contains the data we wish to write
+     * @throws XMLStreamException
+     */
     private static void writeGamedatatoXML(XMLStreamWriter xmlDoc,Player player) throws XMLStreamException{
         xmlDoc.writeStartElement("GAMEDATA");
 
@@ -94,6 +120,11 @@ public final class SaveObject  {
         xmlDoc.writeEndElement();
     }
 
+    /**
+     * Loads a saved game which is an XML file 
+     *
+     * @param path the path to the XML file that the method will load
+     */
     public static void readXML(String path){
         try{
             XMLInputFactory factory = XMLInputFactory.newInstance();
@@ -141,33 +172,61 @@ public final class SaveObject  {
         }
     }
 
+    /**
+     * Reads A ships data from XMl and updates the game to place it in it.
+     *
+     * @param eventReader The eventReader currently parsing the tree
+     * @throws XMLStreamException
+     */
     private static void placeShip(XMLEventReader eventReader) throws XMLStreamException {
         //skip through the xml till we find data values
-        while (! eventReader.peek().isCharacters()){
-            eventReader.nextEvent();
-        }
+        Next(eventReader);
         XMLEvent event = eventReader.nextEvent();
-
         Characters chars = event.asCharacters();
         float x = Float.parseFloat(chars.getData()) ;
 
-        while (! eventReader.peek().isCharacters()){
-            eventReader.nextEvent();
-        }
+        Next(eventReader);
         event = eventReader.nextEvent();
         chars = event.asCharacters();
         float y = Float.parseFloat(chars.getData()) ;
 
-        while (! eventReader.peek().isCharacters()){
-            eventReader.nextEvent();
-        }
+        Next(eventReader);
         event = eventReader.nextEvent();
         chars = event.asCharacters();
         int index = Integer.parseInt(chars.getData()) ;
-        GameManager.ships.get(index).setPosition(x,y);
 
+        Next(eventReader);
+        event = eventReader.nextEvent();
+        chars = event.asCharacters();
+        int health = Integer.parseInt(chars.getData());
+
+
+        GameManager.ships.get(index).setPosition(x,y);
+        GameManager.ships.get(index).setHealth(health);
+        if(health<=0){
+            GameManager.ships.get(index).ShipDeath();
+        }
     }
+
+    /**
+     * Iterates through the XML tree until it comes to a character
+     *
+     * @param eventReader The event reader currently parsing the tree
+     * @throws XMLStreamException
+     */
+    private static void Next(XMLEventReader eventReader) throws XMLStreamException {
+        while (! eventReader.peek().isCharacters()){
+            eventReader.nextEvent();
+        }
+    }
+
+    /**
+     * Reads Game data from XML
+     * @param eventReader The eventReader currently parsing the tree
+     * @throws XMLStreamException
+     */
     private static void loadGameData(XMLEventReader eventReader) throws XMLStreamException {
+
         while (! eventReader.peek().isCharacters()){
             eventReader.nextEvent();
         }
