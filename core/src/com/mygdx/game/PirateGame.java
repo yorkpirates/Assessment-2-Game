@@ -36,12 +36,12 @@ public class PirateGame extends Game {
         ResourceManager.addTexture("newmenuBG.jpg");
         ResourceManager.addTexture("shopBG.jpg");
         ResourceManager.addTexture("Chest.png");
-        ResourceManager.addTexture("powerup1.png");
-        ResourceManager.addTexture("powerup2.png");
-        ResourceManager.addTexture("powerup3.png");
-        ResourceManager.addTexture("powerup4.png");
-        ResourceManager.addTexture("powerup5.png");
-        ResourceManager.addTexture("powerup6.png");
+        ResourceManager.addTexture("powerups/powerup1.png");
+        ResourceManager.addTexture("powerups/powerup2.png");
+        ResourceManager.addTexture("powerups/powerup3.png");
+        ResourceManager.addTexture("powerups/powerup4.png");
+        ResourceManager.addTexture("powerups/powerup5.png");
+        ResourceManager.addTexture("powerups/powerup6.png");
         ResourceManager.loadAssets();
         // cant load any more resources after this point (just functionally I choose not to implement)
         stage = new Stage(new ScreenViewport());
