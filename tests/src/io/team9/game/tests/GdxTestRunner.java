@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package io.dimitris.gemo.tests;
+package io.team9.game.tests;
 
 import java.util.HashMap;
 import java.util.Map;
