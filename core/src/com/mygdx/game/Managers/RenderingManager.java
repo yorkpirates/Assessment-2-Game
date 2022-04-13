@@ -1,5 +1,6 @@
 package com.mygdx.game.Managers;
 
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.mygdx.game.Components.Component;
@@ -23,6 +24,7 @@ public final class RenderingManager {
     public static void Initialize() {
         initialized = true;
         renderItems = new ArrayList<>();
+
 
         batch = new SpriteBatch();
         // batch.enableBlending();
