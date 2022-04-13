@@ -14,7 +14,7 @@
  * limitations under the License.
  ******************************************************************************/
 
-package de.tomgrill.gdxtesting;
+package io.dimitris.gemo.tests;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -84,9 +84,6 @@ public class GdxTestRunner extends BlockJUnit4ClassRunner implements Application
 		waitUntilInvokedInRenderMethod();
 	}
 
-	/**
-	    *
-	    */
 	private void waitUntilInvokedInRenderMethod() {
 		try {
 			while (true) {
