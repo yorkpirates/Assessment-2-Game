@@ -485,22 +485,22 @@ public class GameScreen extends Page {
         t2.add(powerWindow).right();
 
         if(PowerupScreen.isPowerup1Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup1.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup1.png")));
         }
         if(PowerupScreen.isPowerup2Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup2.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup2.png")));
         }
         if(PowerupScreen.isPowerup3Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup3.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup3.png")));
         }
         if(PowerupScreen.isPowerup4Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup4.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup4.png")));
         }
         if(PowerupScreen.isPowerup5Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup5.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup5.png")));
         }
         if(PowerupScreen.isPowerup6Owned){
-            powerTable.add(new Image(ResourceManager.getTexture("powerup6.png")));
+            powerTable.add(new Image(ResourceManager.getTexture("powerups/powerup6.png")));
         }
 
 
