@@ -16,6 +16,8 @@ public class Pirate extends Component {
     public static int plunder;
     protected boolean isAlive;
     public  int health;
+
+    public int points;
     public static int ammo;
     private final int attackDmg;
     private boolean isImmortality;
@@ -44,6 +46,7 @@ public class Pirate extends Component {
         isImmortality = false;
         isShootEightDirections = false;
         isBiggerDamage = false;
+        points =0;
     }
 
     public void addTarget(Ship target) {
@@ -199,4 +202,6 @@ public class Pirate extends Component {
     public QueueFIFO<Ship> getTargets() {
         return targets;
     }
+
+    public int getPoints(){return points;}
 }
