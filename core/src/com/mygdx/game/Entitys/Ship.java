@@ -223,6 +223,9 @@ public class Ship extends Entity implements CollisionCallBack {
             }
              if(!isAlive()){
                 ShipDeath();
+                Ship shooter = ball.getShooter();
+                shooter.plunder(50);
+                shooter.getComponent(Pirate.class).points +=100;
             }
 
         } else if (info.a instanceof CannonBallCollege) {
