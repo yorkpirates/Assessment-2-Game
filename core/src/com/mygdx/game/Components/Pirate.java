@@ -204,4 +204,6 @@ public class Pirate extends Component {
     }
 
     public int getPoints(){return points;}
+
+    public void addPoints(int value){points += value;}
 }

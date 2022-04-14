@@ -50,6 +50,7 @@ public class GameScreen extends Page {
     public static float[] powers;
     public static int[] durations;
     public static float warn1_time, warn2_time;
+    public static int timer;
     public static int num_powers;
     public static int message1, message2;
     private Texture texture;
@@ -225,6 +226,13 @@ public class GameScreen extends Page {
         }
 
         powerUp();
+        if (timer ==60){
+            timer =0;
+            p.getComponent(Pirate.class).addPoints(1);
+        }
+        else{
+            timer++;
+        }
         healthLabel.setText(String.valueOf(p.getHealth()));
         dosh.setText(String.valueOf(p.getPlunder()));
         ammo.setText(String.valueOf(p.getAmmo()));
