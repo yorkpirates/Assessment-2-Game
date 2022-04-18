@@ -1,5 +1,6 @@
 package com.mygdx.game.Components;
 
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.math.Vector2;
@@ -49,6 +50,14 @@ public class Renderable extends Component {
         sprite = new Sprite(ResourceManager.getSprite(atlasId, texName));
         RenderingManager.addItem(this, layer);
     }
+
+    public Renderable(String img, RenderLayer layer) {
+        this();
+        Texture texture = new Texture(img);
+        sprite = new Sprite(texture);
+        RenderingManager.addItem(this, layer);
+    }
+
 
     /**
      * Locates the sprite at the position of the parent's Transform component.

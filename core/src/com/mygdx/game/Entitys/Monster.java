@@ -37,17 +37,17 @@ public class Monster extends Entity implements CollisionCallBack {
             directions = new ObjectMap<>();
             directions.put(new Vector2(0, 1), "-up");
             directions.put(new Vector2(0, -1), "-down");
-            directions.put(new Vector2(1, 0), "-right");
-            directions.put(new Vector2(-1, 0), "-left");
-            directions.put(new Vector2(1, 1), "-ur");
-            directions.put(new Vector2(-1, 1), "-ul");
-            directions.put(new Vector2(1, -1), "-dr");
-            directions.put(new Vector2(-1, -1), "-dl");
+            directions.put(new Vector2(-1, 0), "-right");
+            directions.put(new Vector2(1, 0), "-left");
+//            directions.put(new Vector2(1, 1), "-ur");
+//            directions.put(new Vector2(-1, 1), "-ul");
+//            directions.put(new Vector2(1, -1), "-dr");
+//            directions.put(new Vector2(-1, -1), "-dl");
         }
 
         Transform t = new Transform();
         t.setPosition(400, 600);
-        Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
+        Renderable r = new Renderable("monster-up.png", RenderLayer.Transparent) ;
         rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
         rb.setCallback(this);
 
@@ -71,6 +71,15 @@ public class Monster extends Entity implements CollisionCallBack {
     /**
      * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
      *
+     * @param dir the dir to face (used to get the correct sprite from the texture atlas
+     */
+    public void setDirection(Vector2 dir) {
+        setDirection(getDirection(dir));
+    }
+
+    /**
+     * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
+     *
      * @param direction the dir to face (used to get the correct sprite from the texture atlas
      */
     public void setDirection(String direction) {
@@ -78,10 +87,10 @@ public class Monster extends Entity implements CollisionCallBack {
             return;
         }
         Renderable r = getComponent(Renderable.class);
-//        Sprite s = ResourceManager.getSprite();
+        Sprite s = ResourceManager.getSprite("monster" + direction + ".png");
 
         try {
-//            r.setTexture(s);
+            r.setTexture(s);
         } catch (Exception ignored) {
 
         }
@@ -96,11 +105,25 @@ public class Monster extends Entity implements CollisionCallBack {
         rb.setVelocity(dir);
     }
 
+
     @Override
     public void update() {
         super.update();
-        if (count == 50) {
-            Vector2 dir = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
+
+        float x = this.getPosition().x - GameManager.ships.get(0).getPosition().x;
+        float y = this.getPosition().y - GameManager.ships.get(0).getPosition().y;
+        Vector2 dir = new Vector2(x / -3, y / -3);
+        if (y==0 && x==0){
+            this.setDirection(new Vector2( x, y));
+            System.out.println(x + " **** " + y);
+        } else if (x < y) {
+            this.setDirection(new Vector2( Math.round(x/y), Math.round(y/y)));
+            System.out.println(Math.round(x/y) + " **** " + Math.round(y/y));
+        } else {
+            this.setDirection(new Vector2( Math.round(x/x), Math.round(y/x)));
+            System.out.println(Math.round(x/x) + " **** " + Math.round(y/y));
+        }
+        if (count == 200) {
             moveMonster(dir);
             count = 0;
         }

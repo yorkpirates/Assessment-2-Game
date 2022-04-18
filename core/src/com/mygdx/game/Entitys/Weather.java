@@ -33,7 +33,7 @@ public class Weather extends Entity implements CollisionCallBack {
 
         Transform t = new Transform();
         t.setPosition(900, 800);
-        Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
+        Renderable r = new Renderable("whirlpool.png", RenderLayer.Transparent) ;
         rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
         rb.setCallback(this);
 
