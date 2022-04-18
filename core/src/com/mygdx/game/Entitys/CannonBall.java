@@ -19,7 +19,7 @@ import static com.mygdx.utils.Constants.TILE_SIZE;
 public class CannonBall extends Entity implements CollisionCallBack {
     private static float speed;
     private boolean toggleLife;
-    private static final int MAX_AGE = 5;
+    private static final int MAX_AGE = 10;
     private float age = 0;
     private Ship shooter;
 

@@ -20,6 +20,8 @@ public class College extends Entity {
     private int i;
     private Vector2 target;
 
+    private boolean active;
+
     public College() {
         super();
         buildings = new ArrayList<>();
@@ -31,6 +33,7 @@ public class College extends Entity {
         Transform t = new Transform();
         Pirate p = new Pirate();
         addComponents(t, p);
+        active = true;
     }
 
     /**
@@ -97,7 +100,14 @@ public class College extends Entity {
             }
         }
         if (!res) {
+            if(getComponent(Pirate.class).isAlive()){
+                GameManager.getPlayer().getComponent(Pirate.class).addPoints(10000);
+                GameManager.getPlayer().getComponent(Pirate.class).addPlunder(1000);
+                active = false;
+            }
             getComponent(Pirate.class).kill();
+
+
         }
     }
 
@@ -113,12 +123,17 @@ public class College extends Entity {
     public void update() {
         super.update();
         isAlive();
-        if (i == 50) {
-            target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
-            shoot(target);
-            i = 0;
+
+        if(active){
+            if (i == 50) {
+                target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
+                shoot(target);
+                i = 0;
+            }
+            i++;
+
         }
-        i++;
+
     }
 
 }
