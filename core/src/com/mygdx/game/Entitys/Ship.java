@@ -233,7 +233,6 @@ public class Ship extends Entity implements CollisionCallBack {
             System.out.println(getHealth());
         }
         else if (info.b instanceof Weather){
-            System.out.println("rah");
             Weather weather = (Weather) info.b;
             Pirate pirate = getComponent(Pirate.class);
             pirate.takeDamage(10);
