@@ -1,5 +1,6 @@
 package io.team9.game.tests.utils;
 
+import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Entitys.CannonBall;
 import com.mygdx.game.Entitys.Ship;
@@ -9,6 +10,7 @@ import io.team9.game.tests.GdxTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
+import java.awt.*;
 import java.util.ArrayList;
 
 import static org.junit.Assert.*;

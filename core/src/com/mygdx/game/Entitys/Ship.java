@@ -1,5 +1,7 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.utils.ObjectMap;
@@ -48,7 +50,35 @@ public class Ship extends Entity implements CollisionCallBack {
 
         Transform t = new Transform();
         t.setPosition(800, 800);
-        Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
+        /*if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+            RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
+            rb.setCallback(this);
+            Pirate p = new Pirate();
+
+            // rb.setCallback(this);
+
+            addComponents(t, rb, p);
+        }
+        else{
+            Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
+            RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
+            rb.setCallback(this);
+
+            Pirate p = new Pirate();
+
+            // rb.setCallback(this);
+
+            addComponents(t, r, rb, p);
+
+        }*/
+        Renderable r;
+        if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+            r =null;
+        }
+        else{
+            r = new Renderable(3, "white-up", RenderLayer.Transparent);
+        }
+
         RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
         rb.setCallback(this);
 
@@ -57,6 +87,9 @@ public class Ship extends Entity implements CollisionCallBack {
         // rb.setCallback(this);
 
         addComponents(t, r, rb, p);
+
+
+
     }
 
     public boolean isAlive() {

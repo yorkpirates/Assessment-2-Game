@@ -213,6 +213,7 @@ public final class ResourceManager {
     }
 
     public static TextureAtlas getTextureAtlas(int id) {
+
         tryInit();
         String fPath = ids.get(id - 1);
         return getTextureAtlas(fPath);
