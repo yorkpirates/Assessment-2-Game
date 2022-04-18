@@ -57,7 +57,7 @@ public class Pirate extends Component {
         return plunder;
     }
 
-    public static void addPlunder(int money) {
+    public  void addPlunder(int money) {
         plunder += money;
     }
 
