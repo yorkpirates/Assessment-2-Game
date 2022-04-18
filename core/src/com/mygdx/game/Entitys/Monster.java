@@ -35,8 +35,8 @@ public class Monster extends Entity implements CollisionCallBack {
         setName("Storm (" + monsterCount++ + ")"); // each ship has a unique name
         if (directions == null) {
             directions = new ObjectMap<>();
-            directions.put(new Vector2(0, 1), "-up");
-            directions.put(new Vector2(0, -1), "-down");
+            directions.put(new Vector2(0, -1), "-up");
+            directions.put(new Vector2(0, 1), "-down");
             directions.put(new Vector2(-1, 0), "-right");
             directions.put(new Vector2(1, 0), "-left");
 //            directions.put(new Vector2(1, 1), "-ur");
@@ -115,13 +115,10 @@ public class Monster extends Entity implements CollisionCallBack {
         Vector2 dir = new Vector2(x / -3, y / -3);
         if (y==0 && x==0){
             this.setDirection(new Vector2( x, y));
-            System.out.println(x + " **** " + y);
-        } else if (x < y) {
-            this.setDirection(new Vector2( Math.round(x/y), Math.round(y/y)));
-            System.out.println(Math.round(x/y) + " **** " + Math.round(y/y));
+        } else if (Math.abs(x) < Math.abs(y)) {
+            this.setDirection(new Vector2( Math.round(x/Math.abs(y)), Math.round(y/Math.abs(y))));
         } else {
-            this.setDirection(new Vector2( Math.round(x/x), Math.round(y/x)));
-            System.out.println(Math.round(x/x) + " **** " + Math.round(y/y));
+            this.setDirection(new Vector2( Math.round(x/Math.abs(x)), Math.round(y/Math.abs(x))));
         }
         if (count == 200) {
             moveMonster(dir);
