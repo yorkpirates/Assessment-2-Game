@@ -21,6 +21,7 @@ public final class GameManager {
     private static ArrayList<Faction> factions;
     public static ArrayList<Ship> ships;
     public static ArrayList<College> colleges;
+    public static ArrayList<Weather> weathers;
 
     private static final int cacheSize = 20;
     private static ArrayList<CannonBall> ballCache;
@@ -45,6 +46,7 @@ public final class GameManager {
         ballCache = new ArrayList<>(cacheSize);
         ballCache2 = new ArrayList<>(cacheSize);
         colleges = new ArrayList<>();
+        weathers = new ArrayList<>();
 
         for (int i = 0; i < cacheSize; i++) {
             ballCache.add(new CannonBall());
@@ -93,6 +95,7 @@ public final class GameManager {
     public static void SpawnGame(int mapId) {
         CreateWorldMap(mapId);
         CreatePlayer();
+        CreateWeather();
         final int cnt = settings.get("factionDefaults").getInt("shipCount");
         for (int i = 0; i < factions.size(); i++) {
             CreateCollege(i + 1);
@@ -115,6 +118,16 @@ public final class GameManager {
         Player p = new Player();
         p.setFaction(1);
         ships.add(p);
+    }
+
+    /**
+     * Creates weather
+     */
+    public static Weather CreateWeather() {
+        tryInit();
+        Weather e = new Weather();
+        weathers.add(e);
+        return e;
     }
 
     /**
