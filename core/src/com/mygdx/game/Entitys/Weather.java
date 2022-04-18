@@ -102,7 +102,7 @@ public class Weather extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-        if (this instanceof Weather && !(info.a instanceof Weather)) {
+        if (this instanceof Weather && !(info.a instanceof Weather) && !(info.a == null)){
             ((CollisionCallBack) info.a).EnterTrigger(info);
         }
     }
@@ -112,7 +112,7 @@ public class Weather extends Entity implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-        if (this instanceof Weather && !(info.a instanceof Weather)) {
+        if (this instanceof Weather && !(info.a instanceof Weather) && !(info.a == null)) {
             ((CollisionCallBack) info.a).ExitTrigger(info);
         }
     }
