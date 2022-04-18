@@ -14,6 +14,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Window;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.ScreenUtils;
 import com.mygdx.game.Components.ComponentEvent;
+import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Components.Text;
 import com.mygdx.game.Entitys.NPCShip;
 import com.mygdx.game.Entitys.Player;
@@ -33,6 +34,8 @@ public class GameScreen extends Page {
     public static Label healthLabel;
     public static Label dosh;
     public static Label ammo;
+
+    public static Label points;
     public static Label questName;
     public static Label questDesc;
 
@@ -47,6 +50,7 @@ public class GameScreen extends Page {
     public static float[] powers;
     public static int[] durations;
     public static float warn1_time, warn2_time;
+    public static int timer;
     public static int num_powers;
     public static int message1, message2;
     private Texture texture;
@@ -222,9 +226,17 @@ public class GameScreen extends Page {
         }
 
         powerUp();
+        if (timer ==60){
+            timer =0;
+            p.getComponent(Pirate.class).addPoints(1);
+        }
+        else{
+            timer++;
+        }
         healthLabel.setText(String.valueOf(p.getHealth()));
         dosh.setText(String.valueOf(p.getPlunder()));
         ammo.setText(String.valueOf(p.getAmmo()));
+        points.setText(String.valueOf(p.getComponent(Pirate.class).getPoints()));
         if (!QuestManager.anyQuests()) {
             parent.end.win();
             parent.setScreen(parent.end);}
@@ -275,6 +287,10 @@ public class GameScreen extends Page {
 
         dosh = new Label("N/A", parent.skin);
         table.add(dosh).top().left().size(50);
+
+        table.row();
+        points = new Label("N/A", parent.skin);
+        table.add(points).top().left().size(50);
 
         table.row();
 
