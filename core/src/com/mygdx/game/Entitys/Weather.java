@@ -22,9 +22,6 @@ import java.util.Objects;
  */
 public class Weather extends Entity implements CollisionCallBack {
     private static int weatherCount = 0;
-    public static ObjectMap<Vector2, String> shipDirections;
-
-    private final Vector2 currentDir;
     RigidBody rb;
     int count = 0;
     /**
@@ -32,19 +29,7 @@ public class Weather extends Entity implements CollisionCallBack {
      */
     public Weather() {
         super(4);
-        currentDir = new Vector2();
         setName("Storm (" + weatherCount++ + ")"); // each ship has a unique name
-        if (shipDirections == null) {
-            shipDirections = new ObjectMap<>();
-            shipDirections.put(new Vector2(0, 1), "-up");
-            shipDirections.put(new Vector2(0, -1), "-down");
-            shipDirections.put(new Vector2(1, 0), "-right");
-            shipDirections.put(new Vector2(-1, 0), "-left");
-            shipDirections.put(new Vector2(1, 1), "-ur");
-            shipDirections.put(new Vector2(-1, 1), "-ul");
-            shipDirections.put(new Vector2(1, -1), "-dr");
-            shipDirections.put(new Vector2(-1, -1), "-dl");
-        }
 
         Transform t = new Transform();
         t.setPosition(900, 800);
@@ -55,19 +40,6 @@ public class Weather extends Entity implements CollisionCallBack {
         addComponents(t, r, rb);
     }
 
-    /**
-     * gets the string representation of the direction the ship is facing
-     *
-     * @param dir the vector dir the ship is facing
-     * @return the string representation of the direction
-     */
-    private String getShipDirection(Vector2 dir) {
-        if (!currentDir.equals(dir) && shipDirections.containsKey(dir)) {
-            currentDir.set(dir);
-            return shipDirections.get(dir);
-        }
-        return "";
-    }
 
     private void moveWeather(Vector2 dir) {
         rb.setVelocity(dir);
