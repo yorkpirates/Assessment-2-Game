@@ -99,6 +99,60 @@ public class AssetTests {
                 .internal("test.xml").exists());
     }
 
+    @Test
+    public void testMonsterDownAssetExists() {
+        assertTrue("This test will only pass when the monster-down.png asset exists", Gdx.files
+                .internal("monster-down.png").exists());
+    }
+
+    @Test
+    public void testMonsterLeftAssetExists() {
+        assertTrue("This test will only pass when the monster-left.png asset exists", Gdx.files
+                .internal("monster-left.png").exists());
+    }
+
+    @Test
+    public void testMonsterRightAssetExists() {
+        assertTrue("This test will only pass when the monster-right.png asset exists", Gdx.files
+                .internal("monster-right.png").exists());
+    }
+
+    @Test
+    public void testMonsterUpAssetExists() {
+        assertTrue("This test will only pass when the monster-up.png asset exists", Gdx.files
+                .internal("monster-up.png").exists());
+    }
+
+    @Test
+    public void testMonsterUpLeftAssetExists() {
+        assertTrue("This test will only pass when the monster-up-left.png asset exists", Gdx.files
+                .internal("monster-up-left.png").exists());
+    }
+
+    @Test
+    public void testMonsterUpRightAssetExists() {
+        assertTrue("This test will only pass when the monster-up-right.png asset exists", Gdx.files
+                .internal("monster-up-right.png").exists());
+    }
+
+    @Test
+    public void testMonsterDownLeftAssetExists() {
+        assertTrue("This test will only pass when the monster-down-left.png asset exists", Gdx.files
+                .internal("monster-down-left.png").exists());
+    }
+
+    @Test
+    public void testMonsterDownRightAssetExists() {
+        assertTrue("This test will only pass when the monster-down-right.png asset exists", Gdx.files
+                .internal("monster-down-right.png").exists());
+    }
+
+    @Test
+    public void testWhirlpoolAssetExists() {
+        assertTrue("This test will only pass when the whirlpool.png asset exists", Gdx.files
+                .internal("whirlpool.png").exists());
+    }
+
     // /UISkin files
 
     @Test
