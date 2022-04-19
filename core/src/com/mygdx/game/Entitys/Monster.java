@@ -17,7 +17,7 @@ import com.mygdx.game.Physics.PhysicsBodyType;
 import java.util.Objects;
 
 /**
- * Base class for game ships, Player & NPC.
+ * Base class.
  */
 public class Monster extends Entity implements CollisionCallBack {
     private static int monsterCount = 0;
@@ -27,12 +27,12 @@ public class Monster extends Entity implements CollisionCallBack {
     RigidBody rb;
     int count = 0;
     /**
-     * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
+     * Creates a monster entity, containing Transform, Renderable, RigidBody, and Pirate components.
      */
     public Monster() {
         super(4);
         currentDir = new Vector2();
-        setName("Storm (" + monsterCount++ + ")"); // each ship has a unique name
+        setName("Storm (" + monsterCount++ + ")"); // each monster has a unique name
         if (directions == null) {
             directions = new ObjectMap<>();
             directions.put(new Vector2(0, -1), "-up");
@@ -55,9 +55,9 @@ public class Monster extends Entity implements CollisionCallBack {
     }
 
     /**
-     * gets the string representation of the direction the ship is facing
+     * gets the string representation of the direction the monster is facing
      *
-     * @param dir the vector dir the ship is facing
+     * @param dir the vector dir the monster is facing
      * @return the string representation of the direction
      */
     private String getDirection(Vector2 dir) {
@@ -69,18 +69,18 @@ public class Monster extends Entity implements CollisionCallBack {
     }
 
     /**
-     * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
+     * will rotate the monster to face the direction (just changes the sprite doesn't actually rotate)
      *
-     * @param dir the dir to face (used to get the correct sprite from the texture atlas
+     * @param dir the dir to face (used to get the correct sprite )
      */
     public void setDirection(Vector2 dir) {
         setDirection(getDirection(dir));
     }
 
     /**
-     * will rotate the ship to face the direction (just changes the sprite doesn't actually rotate)
+     * will rotate the monster to face the direction (just changes the sprite doesn't actually rotate)
      *
-     * @param direction the dir to face (used to get the correct sprite from the texture atlas
+     * @param direction the dir to face (used to get the correct sprite )
      */
     public void setDirection(String direction) {
         if (Objects.equals(direction, "")) {
@@ -138,7 +138,8 @@ public class Monster extends Entity implements CollisionCallBack {
     }
 
     /**
-     * if called on a Player against anything else call it on the other thing
+     * if called on a 
+     Monster against anything else call it on the other thing
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
@@ -148,7 +149,7 @@ public class Monster extends Entity implements CollisionCallBack {
     }
 
     /**
-     * if called on a Player against anything else call it on the other thing
+     * if called on a Monsteer against anything else call it on the other thing
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
