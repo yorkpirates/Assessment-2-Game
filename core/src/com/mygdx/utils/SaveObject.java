@@ -1,6 +1,7 @@
 package com.mygdx.utils;
 
 import com.badlogic.gdx.Game;
+import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.GameManager;
@@ -114,6 +115,10 @@ public final class SaveObject  {
 
         xmlDoc.writeStartElement("Plunder");
         xmlDoc.writeCharacters(String.valueOf(player.getPlunder()));
+        xmlDoc.writeEndElement();
+
+        xmlDoc.writeStartElement("Points");
+        xmlDoc.writeCharacters(String.valueOf(player.getComponent(Pirate.class).getPoints()));
         xmlDoc.writeEndElement();
 
 
@@ -244,6 +249,10 @@ public final class SaveObject  {
         int plunder = Integer.parseInt(chars.getData());
         //as game starts at 0 add the money from the save on.
         GameManager.getPlayer().plunder(plunder);
+
+        Next(eventReader);
+        event = eventReader.nextEvent();
+        GameManager.getPlayer().getComponent(Pirate.class).points =Integer.parseInt(event.asCharacters().getData());
 
     }
 }

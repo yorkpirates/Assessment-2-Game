@@ -90,6 +90,26 @@ public class QuitConfirmationScreen extends Page {
         });
         t.add(SaveBtn).top().size(100, 25).spaceBottom(space);
         t.row();
+        TextButton RestartBtn = new TextButton("Restart", parent.skin);
+        RestartBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                SaveObject.readXML("save.xml");
+                DifficultyManager.SelectEasy();
+                parent.setScreen(parent.game);
+                //to be removed upon implementation in save
+                GameManager.getPlayer().updateHealth();
+                /*
+                parent.game.dispose();
+                int id_map = ResourceManager.addTileMap("Map.tmx");
+                parent.game =  new GameScreen(parent,  id_map);
+                parent.setScreen(parent.menu);
+
+                 */
+            }
+        });
+        t.add(RestartBtn).top().size(100, 25).spaceBottom(space);
+        t.row();
         TextButton back = new TextButton("Return", parent.skin);
         back.addListener(new ChangeListener() {
             @Override
