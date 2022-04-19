@@ -94,6 +94,12 @@ public class AssetTests {
     }
 
     @Test
+    public void testSaveXMLExists() {
+        assertTrue("This test will only pass when the save.xml asset exists", Gdx.files
+                .internal("save.xml").exists());
+    }
+
+    @Test
     public void testTestXMLAssetExists() {
         assertTrue("This test will only pass when the test.xml asset exists", Gdx.files
                 .internal("test.xml").exists());
