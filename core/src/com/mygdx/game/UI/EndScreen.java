@@ -8,14 +8,10 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
-import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Entitys.Player;
-import com.mygdx.game.Managers.DifficultyManager;
 import com.mygdx.game.Managers.GameManager;
-import com.mygdx.game.Managers.QuestManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -75,7 +71,6 @@ public class EndScreen extends Page {
             Gdx.app.exit();
             System.exit(0);
         }
-
     }
 
     /**
@@ -85,49 +80,9 @@ public class EndScreen extends Page {
     public void show() {
         super.show();
         Player p = GameManager.getPlayer();
-        String stats = String.format("Health: %s\nAmmo: %s\nPlunder: %s\nPoints: %s", p.getHealth(), p.getAmmo(), p.getPlunder(),p.getComponent(Pirate.class).getPoints());
+        String stats = String.format("Health: %s\nAmmo: %s\nPlunder: %s", p.getHealth(), p.getAmmo(), p.getPlunder());
         playerStats.setText(stats);
-        if(WinCheck()){
-            win();
-        }
-
     }
-
-    /**
-     * Checks if the player meets the win conditions based on the difficulty level
-     * @return A Boolean based on whether the player has won
-     */
-    private boolean WinCheck(){
-        Boolean result = false;
-        Integer questsNeeded = 0;
-        Integer pointsNeeded = 0;
-        switch (DifficultyManager.getDifficulty()){
-            case "e":
-                questsNeeded =1;
-                pointsNeeded = 100;
-                break;
-
-            case "n":
-                questsNeeded = 3;
-                pointsNeeded = 500;
-                break;
-
-
-            case "h":
-                questsNeeded = 5;
-                pointsNeeded = 1000;
-                break;
-
-        }
-        if(QuestManager.numCompleted>=questsNeeded){
-            if(GameManager.getPlayer().getComponent(Pirate.class).getPoints()>pointsNeeded){
-                result = true;
-            }
-        }
-        return result;
-
-    }
-
 
     @Override
     public void resize(int width, int height) {

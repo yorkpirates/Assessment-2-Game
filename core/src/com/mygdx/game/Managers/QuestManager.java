@@ -21,7 +21,7 @@ public class QuestManager {
     private static boolean initialized = false;
     private static ArrayList<Quest> allQuests;
     private static Chest chest;
-    public static int numCompleted;
+
     public static void Initialize() {
         initialized = true;
         allQuests = new ArrayList<>();
@@ -127,7 +127,6 @@ public class QuestManager {
             if (completed) {
                 p.plunder(q.getReward());
                 p.setReward_powerUp(true);
-                numCompleted ++;
             } else if (q instanceof LocateQuest) {
                 chest.setPosition(((LocateQuest) q).getLocation());
                 break;

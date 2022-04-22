@@ -1,0 +1,27 @@
+package io.team9.game.tests.utils;
+import io.team9.game.tests.GdxTestRunner;
+import com.mygdx.game.UI.GameScreen;
+import com.mygdx.game.UI.PowerupScreen;
+import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.Managers.EntityManager;
+import com.mygdx.game.Managers.GameManager;
+import com.mygdx.game.Managers.PhysicsManager;
+import org.junit.Test;
+import org.junit.runner.RunWith;
+import java.util.ArrayList;
+import static org.junit.Assert.*;
+@RunWith(GdxTestRunner.class)
+public class PowerUpTest {
+    @Test
+    public void IniEverything(){
+        PhysicsManager.initialized()
+        EntityManager.initialized()
+        RenderingManager.initialized()
+        GameManager.initialized()
+    }
+
+    public void testActor(){
+        CreateActors thatActor = CreateActors()
+        
+    }
+}

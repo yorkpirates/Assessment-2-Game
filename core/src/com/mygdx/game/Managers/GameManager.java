@@ -22,7 +22,6 @@ public final class GameManager {
     public static ArrayList<Ship> ships;
     public static ArrayList<College> colleges;
     public static ArrayList<Weather> weathers;
-    public static ArrayList<Monster> monsters;
 
     private static final int cacheSize = 20;
     private static ArrayList<CannonBall> ballCache;
@@ -48,7 +47,6 @@ public final class GameManager {
         ballCache2 = new ArrayList<>(cacheSize);
         colleges = new ArrayList<>();
         weathers = new ArrayList<>();
-        monsters = new ArrayList<>();
 
         for (int i = 0; i < cacheSize; i++) {
             ballCache.add(new CannonBall());
@@ -98,7 +96,6 @@ public final class GameManager {
         CreateWorldMap(mapId);
         CreatePlayer();
         CreateWeather();
-        CreateMonster();
         final int cnt = settings.get("factionDefaults").getInt("shipCount");
         for (int i = 0; i < factions.size(); i++) {
             CreateCollege(i + 1);
@@ -121,15 +118,6 @@ public final class GameManager {
         Player p = new Player();
         p.setFaction(1);
         ships.add(p);
-    }
-
-    /**
-     * Creates monster
-     */
-    public static void CreateMonster() {
-        tryInit();
-        Monster m = new Monster();
-        monsters.add(m);
     }
 
     /**
