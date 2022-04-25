@@ -26,6 +26,9 @@ public class EndScreen extends Page {
     Label wonText;
     Label playerStats;
 
+    Integer questsNeeded ;
+    Integer pointsNeeded;
+
     public EndScreen(PirateGame game) {
         super(game);
     }
@@ -84,12 +87,13 @@ public class EndScreen extends Page {
     @Override
     public void show() {
         super.show();
-        Player p = GameManager.getPlayer();
-        String stats = String.format("Health: %s\nAmmo: %s\nPlunder: %s\nPoints: %s", p.getHealth(), p.getAmmo(), p.getPlunder(),p.getComponent(Pirate.class).getPoints());
-        playerStats.setText(stats);
         if(WinCheck()){
             win();
         }
+        Player p = GameManager.getPlayer();
+        String stats = String.format("Health: %s\nAmmo: %s\nPlunder: %s\nPoints: %s/%s\nQuests Completed: %s/%s", p.getHealth(), p.getAmmo(), p.getPlunder(),p.getComponent(Pirate.class).getPoints(),pointsNeeded,QuestManager.numCompleted,questsNeeded);
+        playerStats.setText(stats);
+
 
     }
 
@@ -99,8 +103,8 @@ public class EndScreen extends Page {
      */
     private boolean WinCheck(){
         Boolean result = false;
-        Integer questsNeeded = 0;
-        Integer pointsNeeded = 0;
+        questsNeeded = 0;
+        pointsNeeded = 0;
         switch (DifficultyManager.getDifficulty()){
             case "e":
                 questsNeeded =1;
