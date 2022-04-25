@@ -2,9 +2,11 @@ package com.mygdx.utils;
 
 import com.badlogic.gdx.Game;
 import com.mygdx.game.Components.Pirate;
+import com.mygdx.game.Entitys.College;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.GameManager;
+import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.xml.stream.*;
 import javax.xml.stream.events.Characters;
@@ -46,11 +48,17 @@ public final class SaveObject  {
                 i = i +1;
 
             }
+            i=0;
             xMLStreamWriter.writeEndElement();
-
+            for(College c : GameManager.colleges){
+                writeCollegeToXML(xMLStreamWriter,c,i);
+                i = i +1;
+            }
             //write the game data
             Player p = GameManager.getPlayer();
             writeGamedatatoXML(xMLStreamWriter,p);
+
+
 
             xMLStreamWriter.writeEndElement();
             xMLStreamWriter.writeEndDocument();
@@ -97,6 +105,32 @@ public final class SaveObject  {
         xmlDoc.writeEndElement();
 
         xmlDoc.writeEndElement();
+    }
+
+    /**
+     *
+     * @param xmlDoc The Document which is being written to
+     * @param college The college to write to XMl
+     * @param index The index of the college in relation to Gamemanager
+     * @throws XMLStreamException
+     */
+    private static void writeCollegeToXML(XMLStreamWriter xmlDoc, College college,int index) throws XMLStreamException{
+        xmlDoc.writeStartElement("College");
+
+        xmlDoc.writeStartElement("Name");
+        xmlDoc.writeCharacters(String.valueOf(college.getName()));
+        xmlDoc.writeEndElement();
+
+        xmlDoc.writeStartElement("Alive");
+        xmlDoc.writeCharacters(String.valueOf(college.isAlive()));
+        xmlDoc.writeEndElement();
+
+        xmlDoc.writeStartElement("Index");
+        xmlDoc.writeCharacters(String.valueOf(index));
+        xmlDoc.writeEndElement();
+
+        xmlDoc.writeEndElement();
+
     }
 
     /**
@@ -153,6 +187,8 @@ public final class SaveObject  {
                             }
                             else if(qName.equalsIgnoreCase("GAMEDATA")){
                                 loadGameData(eventReader);
+                            } else if (qName.equalsIgnoreCase("College")) {
+                                loadCollege(eventReader);
                             }
                             break;
 
@@ -211,6 +247,34 @@ public final class SaveObject  {
         if(health<=0){
             GameManager.ships.get(index).ShipDeath();
         }
+    }
+
+    /**
+     * Reads the data relating to a college
+     *
+     * @param eventReader The eventReader currently parsing the tree
+     * @throws XMLStreamException
+     */
+    private static void loadCollege(XMLEventReader eventReader) throws XMLStreamException{
+        Next(eventReader);
+        XMLEvent event = eventReader.nextEvent();
+        Characters chars = event.asCharacters();
+        String college_name = chars.getData();
+
+        Next(eventReader);
+        event = eventReader.nextEvent();
+        chars = event.asCharacters();
+        Boolean alive = Boolean.parseBoolean(chars.getData());
+
+        Next(eventReader);
+        event = eventReader.nextEvent();
+        chars = event.asCharacters();
+        Integer index = Integer.parseInt(chars.getData());
+
+        if(!alive){
+            GameManager.colleges.get(index).kill();
+        }
+
     }
 
     /**
