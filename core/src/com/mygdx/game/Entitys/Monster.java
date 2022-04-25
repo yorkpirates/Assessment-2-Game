@@ -22,6 +22,7 @@ import java.util.Objects;
 public class Monster extends Entity implements CollisionCallBack {
     private static int monsterCount = 0;
     public static ObjectMap<Vector2, String> directions;
+    private int health = 200;
 
     private final Vector2 currentDir;
     RigidBody rb;
@@ -46,7 +47,7 @@ public class Monster extends Entity implements CollisionCallBack {
         }
 
         Transform t = new Transform();
-        t.setPosition(400, 600);
+        t.setPosition(1500, 1000);
         Renderable r = new Renderable("monster-up.png", RenderLayer.Transparent) ;
         rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
         rb.setCallback(this);
@@ -127,6 +128,23 @@ public class Monster extends Entity implements CollisionCallBack {
         count++;
     }
 
+    private int getHealth() {
+        return health;
+    };
+
+    private void takeDamage(int amount) {
+        health = health - amount;
+    };
+
+    public boolean isAlive() {
+        return this.getHealth() > 0;
+    }
+
+    public void MonsterDeath(){
+        getComponent(Renderable.class).hide();
+        RigidBody rb = getComponent(RigidBody.class);
+        rb.removeFromPhysicsWorld();
+    }
 
     @Override
     public void BeginContact(CollisionInfo info) {
@@ -146,7 +164,19 @@ public class Monster extends Entity implements CollisionCallBack {
         if (this instanceof Monster && !(info.a instanceof Monster) && !(info.a == null)) {
             ((CollisionCallBack) info.a).EnterTrigger(info);
         }
-    }
+
+        if (info.a instanceof CannonBall) {
+            CannonBall ball = (CannonBall) info.a;
+            takeDamage(5);
+            ball.kill();
+            if (!isAlive()) {
+                Ship shooter = ball.getShooter();
+                shooter.plunder(200);
+                shooter.getComponent(Pirate.class).addPoints(100);
+                MonsterDeath();
+            }
+        }
+        }
 
     /**
      * if called on a Monsteer against anything else call it on the other thing
