@@ -40,10 +40,10 @@ public class Monster extends Entity implements CollisionCallBack {
             directions.put(new Vector2(0, 1), "-down");
             directions.put(new Vector2(-1, 0), "-right");
             directions.put(new Vector2(1, 0), "-left");
-//            directions.put(new Vector2(1, 1), "-ur");
-//            directions.put(new Vector2(-1, 1), "-ul");
-//            directions.put(new Vector2(1, -1), "-dr");
-//            directions.put(new Vector2(-1, -1), "-dl");
+            directions.put(new Vector2(-1, -1), "-up-right");
+            directions.put(new Vector2(1, -1), "-up-left");
+            directions.put(new Vector2(-1, 1), "-down-right");
+            directions.put(new Vector2(1, 1), "-down-left");
         }
 
         Transform t = new Transform();
