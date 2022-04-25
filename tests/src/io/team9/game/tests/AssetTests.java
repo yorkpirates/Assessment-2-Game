@@ -228,4 +228,10 @@ public class AssetTests {
         assertTrue("This test will only pass when the powerups/powerup6.png asset exists", Gdx.files
                 .internal("powerups/powerup6.png").exists());
     }
+
+    @Test
+    public void testPointsAssetExists() {
+        assertTrue("This test will only pass when the points.png asset exists", Gdx.files
+                .internal("points.png").exists());
+    }
 }

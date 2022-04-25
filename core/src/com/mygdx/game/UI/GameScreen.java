@@ -284,16 +284,15 @@ public class GameScreen extends Page {
         table.setDebug(false);
 
         table.add(new Image(parent.skin.getDrawable("coin"))).top().left().size(1.25f * TILE_SIZE);
-
         dosh = new Label("N/A", parent.skin);
         table.add(dosh).top().left().size(50);
 
         table.row();
+        table.add(new Image(ResourceManager.getTexture("points.png"))).top().left().size(1.25f * TILE_SIZE);
         points = new Label("N/A", parent.skin);
         table.add(points).top().left().size(50);
 
         table.row();
-
         table.add(new Image(parent.skin.getDrawable("ball"))).top().left().size(1.25f * TILE_SIZE);
         ammo = new Label("N/A", parent.skin);
         table.add(ammo).top().left().size(50);
