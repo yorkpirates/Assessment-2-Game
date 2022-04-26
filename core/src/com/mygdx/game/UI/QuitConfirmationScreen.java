@@ -94,7 +94,7 @@ public class QuitConfirmationScreen extends Page {
         RestartBtn.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                SaveObject.readXML("save.xml");
+                SaveObject.readXML("restart.xml");
                 DifficultyManager.SelectEasy();
                 parent.setScreen(parent.game);
                 //to be removed upon implementation in save
@@ -144,7 +144,7 @@ public class QuitConfirmationScreen extends Page {
     private void showSaveMenu(){
         if(System.getProperty("os.name").contains("Mac")){
             //Choose A
-            SaveObject.writeXMl("SAVED_GAME.xml");
+            SaveObject.writeXMl("mac_save.xml");
         }
         else{
             JFileChooser fileChooser = new JFileChooser();

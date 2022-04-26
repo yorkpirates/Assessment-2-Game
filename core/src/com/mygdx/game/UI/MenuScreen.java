@@ -86,7 +86,6 @@ public class MenuScreen extends Page {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
                     try {
-                        JOptionPane.showMessageDialog(null,"TEST");
                         showLoadMenu();
                     } catch (FileNotFoundException e) {
                         e.printStackTrace();
@@ -129,10 +128,17 @@ public class MenuScreen extends Page {
         Table t = (Table) actors.get(0);
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg"))); // prevent the bg being stretched
     }
+
+    /**
+     * Shows the load menu for windows
+     * for mac loads from macs save file
+     *
+     * @throws FileNotFoundException
+     */
     private void showLoadMenu() throws FileNotFoundException {
         if(System.getProperty("os.name").contains("Mac")){
             //Get ABSOLOUTE file for mac
-            File f = new File("SAVED_GAME.xml");
+            File f = new File("mac_save.xml");
 
             if(!f.exists()){
                 throw new FileNotFoundException();
