@@ -143,6 +143,8 @@ public class GameScreen extends Page {
         warn1_time = 0;
         warn2_time = 0;
         interval = 0f;
+        GameManager.ships.get(1).setHealth(0);
+        GameManager.ships.get(2).setHealth(0);
     }
 
     private float accumulator;
