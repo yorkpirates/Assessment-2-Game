@@ -58,7 +58,7 @@ public class DesktopLauncher {
             return false;
         }
 
-        // restart jvm with -XstartOnFirstThread
+        // restart.xml jvm with -XstartOnFirstThread
         String separator = System.getProperty("file.separator");
         String classpath = System.getProperty("java.class.path");
         String mainClass = System.getenv("JAVA_MAIN_CLASS_" + pid);

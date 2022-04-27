@@ -91,7 +91,7 @@ public class College extends Entity {
     /**
      * True as long as unharmed buildings remain, false otherwise.
      */
-    public void isAlive() {
+    public boolean isAlive() {
         boolean res = false;
         for (int i = 0; i < buildings.size() - 1; i++) {
             Building b = buildings.get(i);
@@ -109,7 +109,21 @@ public class College extends Entity {
 
 
         }
+        return res;
     }
+
+    /**
+     * Can be called to kill a college and all of its buildings
+     */
+    public void kill(){
+        for (int i = 0; i < buildings.size() - 1; i++) {
+            Building b = buildings.get(i);
+            b.destroy();
+        }
+        active = false;
+
+    }
+
 
     public void shoot(Vector2 target) {
         GameManager.shoot2(this, target);

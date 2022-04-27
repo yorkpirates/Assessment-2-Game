@@ -72,24 +72,7 @@ public class ShopScreen extends Page {
         Label l = new Label("Shop", parent.skin);
         l.setFontScale(2);
         t.add(l).top().spaceBottom(space * 0.5f);
-        t.row();
-
-        t.row();
-        TextButton buyGold = new TextButton("Free Money", parent.skin);
-        buyGold.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                Pirate.plunder += 10;
-            }
-        });
-        t.add(buyGold).top().size(100, 25).spaceBottom(10);
-        t.row();
-        t.add(new Label("Get 10 free coins per click", parent.skin)).spaceBottom(10);
-        t.row();
-        t.add(new Image(parent.skin, "coin")).top().left();
-        t.add(new Label("10", parent.skin)).right().spaceBottom(space);
-
-
+        
         t.row();
         TextButton buyAmmo = new TextButton("Buy Ammo", parent.skin);
         buyAmmo.addListener(new ChangeListener() {

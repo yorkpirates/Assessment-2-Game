@@ -235,6 +235,16 @@ public final class ResourceManager {
     }
 
     /**
+     * @param atlas_id the id of the source texture atlas
+     * @param name     the name of the texture
+     * @return the found Sprite in the given atlas
+     */
+    public static Sprite getSprite(String img) {
+        Texture texture = new Texture(img);
+        return new Sprite(texture);
+    }
+
+    /**
      * Gets the tile map returns null if not a tile map
      *
      * @param id the id of the tile map

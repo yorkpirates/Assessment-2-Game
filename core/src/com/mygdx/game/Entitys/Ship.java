@@ -240,7 +240,7 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void EnterTrigger(CollisionInfo info) {
-        if (this instanceof Player && !(info.b instanceof Player) && !(info.b instanceof Weather)) {
+        if (this instanceof Player && !(info.b instanceof Player) && !(info.b instanceof Weather) && !(info.b instanceof Monster)) {
             ((CollisionCallBack) info.b).EnterTrigger(info);
         }
 
@@ -254,7 +254,6 @@ public class Ship extends Entity implements CollisionCallBack {
                 System.out.println(getHealth());
             }
              if(!isAlive()){
-                ShipDeath();
                 Ship shooter = ball.getShooter();
                 shooter.plunder(50);
                 shooter.getComponent(Pirate.class).addPoints(100);
@@ -276,6 +275,14 @@ public class Ship extends Entity implements CollisionCallBack {
             System.out.println(getHealth());
             System.out.println(getHealth());
         }
+        else if (info.b instanceof Monster){
+            Monster monster = (Monster) info.b;
+            Pirate pirate = getComponent(Pirate.class);
+            pirate.takeDamage(40);
+            System.out.print(getName());
+            System.out.println(getHealth());
+            System.out.println(getHealth());
+        }
         if (!isAlive()) {
             ShipDeath();
         }
@@ -286,7 +293,7 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     @Override
     public void ExitTrigger(CollisionInfo info) {
-        if (this instanceof Player && !(info.b instanceof Player) && !(info.b instanceof Weather)) {
+        if (this instanceof Player && !(info.b instanceof Player) && !(info.b instanceof Weather) && !(info.b instanceof Monster)) {
             ((CollisionCallBack) info.b).ExitTrigger(info);
         }
     }

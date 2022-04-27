@@ -43,6 +43,7 @@ public class PirateGame extends Game {
         ResourceManager.addTexture("powerups/powerup4.png");
         ResourceManager.addTexture("powerups/powerup5.png");
         ResourceManager.addTexture("powerups/powerup6.png");
+        ResourceManager.addTexture("points.png");
         ResourceManager.loadAssets();
         // cant load any more resources after this point (just functionally I choose not to implement)
         if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())){
