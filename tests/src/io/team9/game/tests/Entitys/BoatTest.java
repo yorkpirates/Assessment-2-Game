@@ -5,10 +5,13 @@ import com.mygdx.game.Entitys.CannonBall;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.PhysicsManager;
 import com.mygdx.game.Managers.RenderingManager;
+import com.mygdx.game.PirateGame;
 import com.mygdx.utils.Utilities;
 import io.team9.game.tests.GdxTestRunner;
 import org.junit.Test;
 import org.junit.runner.RunWith;
+
+import com.badlogic.gdx.physics.box2d.*;
 
 import java.util.ArrayList;
 
@@ -18,6 +21,7 @@ public class BoatTest {
     @Test
     public void deathTest(){
         PhysicsManager.Initialize();
+
         Ship boat = new Ship();
         boat.setHealth(0);
         assertFalse(boat.isAlive());

@@ -73,7 +73,7 @@ public class Ship extends Entity implements CollisionCallBack {
         }*/
         Renderable r;
         if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
-            r =null;
+            r =new Renderable();
         }
         else{
             r = new Renderable(3, "white-up", RenderLayer.Transparent);

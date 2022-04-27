@@ -1,5 +1,7 @@
 package com.mygdx.game.Components;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.maps.tiled.TiledMap;
 import com.badlogic.gdx.maps.tiled.TiledMapRenderer;
 import com.badlogic.gdx.maps.tiled.TiledMapTileLayer;
@@ -31,7 +33,10 @@ public class TileMap extends Component {
     public TileMap(int id, RenderLayer layer) {
         this();
         map = ResourceManager.getTileMap(id);
-        renderer = new OrthogonalTiledMapRenderer(map);
+        if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())){
+            renderer = new OrthogonalTiledMapRenderer(map);
+        }
+
         RenderingManager.addItem(this, layer);
 
         TILE_SIZE = getTileDim().x;
