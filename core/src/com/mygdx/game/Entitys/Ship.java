@@ -111,7 +111,9 @@ public class Ship extends Entity implements CollisionCallBack {
      */
     public void setFaction(int factionId) {
         getComponent(Pirate.class).setFactionId(factionId);
-        setShipDirection("-up");
+        if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())) {
+            setShipDirection("-up");
+        }
     }
 
     public void  setFreeze(boolean state){
