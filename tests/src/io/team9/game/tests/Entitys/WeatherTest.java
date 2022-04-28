@@ -10,6 +10,7 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 
 import static org.junit.Assert.assertEquals;
+import static org.junit.Assert.assertFalse;
 
 @RunWith(GdxTestRunner.class)
 public class WeatherTest {
@@ -24,5 +25,20 @@ public class WeatherTest {
         Vector2 pos = new Vector2(900, 800);
         assertEquals("Should start at 900, 800",pos,weather.getComponent(Transform.class).getPosition());
     }
+
+    @Test
+    public void moveWeatherTest(){
+        PhysicsManager.Initialize();
+        GameManager.Initialize();
+
+        Weather weather = new Weather();
+        weather.getComponent(Transform.class).getPosition();
+        weather.moveWeather();
+        weather.moveWeather();
+        weather.moveWeather();
+        Vector2 pos = new Vector2(900, 800);
+        assertFalse(pos == weather.getComponent(Transform.class).getPosition());
+    }
+    
 
 }
