@@ -16,6 +16,7 @@ import com.mygdx.game.Physics.PhysicsBodyType;
 import com.mygdx.utils.Utilities;
 
 import java.util.Objects;
+import java.util.Vector;
 
 /**
  * Base class for game ships, Player & NPC.
@@ -41,18 +42,24 @@ public class Weather extends Entity implements CollisionCallBack {
     }
 
 
-    private void moveWeather(Vector2 dir) {
+    public void moveWeather() {
+
+        Vector2 dir = getRandomDirection();
         rb.setVelocity(dir);
     }
+
+    private Vector2 getRandomDirection() {
+        float x = (float) Math.floor(Math.random()*3) - 1;
+        float y = (float) Math.floor(Math.random()*3) - 1;
+        Vector2 dir = new Vector2(x * 1000, y * 1000);
+        return dir;
+    };
 
     @Override
     public void update() {
         super.update();
         if (count == 50) {
-            float x = (float) Math.floor(Math.random()*3) - 1;
-            float y = (float) Math.floor(Math.random()*3) - 1;
-            Vector2 dir = new Vector2(x * 1000, y * 1000);
-            moveWeather(dir);
+            moveWeather();
             count = 0;
         }
         count++;
