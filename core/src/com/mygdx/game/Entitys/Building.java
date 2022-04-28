@@ -1,5 +1,7 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Components.Pirate;
@@ -22,14 +24,22 @@ public class Building extends Entity implements CollisionCallBack {
     private static int atlas_id;
     private boolean isFlag;
 
-    Building() {
+    public Building() {
         super();
         isFlag = false;
         Transform t = new Transform();
         t.setScale(BUILDING_SCALE, BUILDING_SCALE);
         Pirate p = new Pirate();
-        atlas_id = ResourceManager.getId("Buildings.txt");
-        Renderable r = new Renderable(atlas_id, "big", RenderLayer.Transparent);
+
+        Renderable r;
+        if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+            r =new Renderable();
+        }
+        else{
+            atlas_id = ResourceManager.getId("Buildings.txt");
+            r = new Renderable(atlas_id, "big", RenderLayer.Transparent);;
+        }
+
         addComponents(t, p, r);
     }
 
@@ -38,7 +48,7 @@ public class Building extends Entity implements CollisionCallBack {
      *
      * @param isFlag set to true to create a flag
      */
-    Building(boolean isFlag) {
+    public Building(boolean isFlag) {
         this();
         this.isFlag = isFlag;
     }
@@ -68,9 +78,12 @@ public class Building extends Entity implements CollisionCallBack {
         if (isFlag) {
             return;
         }
-        Sprite s = ResourceManager.getSprite(atlas_id, buildingName + "-broken");
-        Renderable r = getComponent(Renderable.class);
-        r.setTexture(s);
+        if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())){
+            Sprite s = ResourceManager.getSprite(atlas_id, buildingName + "-broken");
+            Renderable r = getComponent(Renderable.class);
+            r.setTexture(s);
+        }
+
         getComponent(Pirate.class).kill();
     }
 

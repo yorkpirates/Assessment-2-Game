@@ -1,5 +1,6 @@
 package com.mygdx.game;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Game;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.scenes.scene2d.Stage;
@@ -45,7 +46,10 @@ public class PirateGame extends Game {
         ResourceManager.addTexture("points.png");
         ResourceManager.loadAssets();
         // cant load any more resources after this point (just functionally I choose not to implement)
-        stage = new Stage(new ScreenViewport());
+        if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())){
+            stage = new Stage(new ScreenViewport());
+        }
+
         createSkin();
         menu = new MenuScreen(this);
         shop = new ShopScreen(this);

@@ -1,5 +1,7 @@
 package com.mygdx.game.Entitys;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.game.Components.Renderable;
 import com.mygdx.game.Components.RigidBody;
@@ -30,7 +32,13 @@ public class CannonBallCollege extends Entity implements CollisionCallBack {
         Transform t = new Transform();
         t.setPosition(-100, 100);
         t.setScale(0.5f, 0.5f);
-        Renderable r = new Renderable(4, "ball", RenderLayer.Transparent);
+        Renderable r;
+        if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+            r =new Renderable();
+        }
+        else{
+            r = new Renderable(4, "ball", RenderLayer.Transparent);
+        }
         RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t, true);
         rb.setCallback(this);
 

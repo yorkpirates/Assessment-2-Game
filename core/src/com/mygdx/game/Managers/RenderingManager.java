@@ -1,5 +1,6 @@
 package com.mygdx.game.Managers;
 
+import com.badlogic.gdx.Application;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -56,12 +57,16 @@ public final class RenderingManager {
      * @param layer the layer that it will be rendered in
      */
     public static void addItem(Component item, RenderLayer layer) {
+        if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+            return;
+        }
         tryInit();
         renderItems.add(item);
         layers.get(layer.ordinal()).add(renderItems.size() - 1);
     }
 
     private static void tryInit() {
+
         if (!initialized) {
             Initialize();
         }

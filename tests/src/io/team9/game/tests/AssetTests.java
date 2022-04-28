@@ -95,14 +95,14 @@ public class AssetTests {
 
     @Test
     public void testSaveXMLExists() {
-        assertTrue("This test will only pass when the save.xml asset exists", Gdx.files
-                .internal("save.xml").exists());
+        assertTrue("This test will only pass when the  mac_save.xml asset exists", Gdx.files
+                .internal("mac_save.xml").exists());
     }
 
     @Test
     public void testTestXMLAssetExists() {
-        assertTrue("This test will only pass when the test.xml asset exists", Gdx.files
-                .internal("test.xml").exists());
+        assertTrue("This test will only pass when the restart.xml asset exists", Gdx.files
+                .internal("restart.xml").exists());
     }
 
     @Test

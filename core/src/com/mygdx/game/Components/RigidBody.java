@@ -1,5 +1,7 @@
 package com.mygdx.game.Components;
 
+import com.badlogic.gdx.Application;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.math.Vector2;
 import com.badlogic.gdx.physics.box2d.*;
 import com.mygdx.game.Managers.PhysicsManager;
@@ -53,8 +55,17 @@ public class RigidBody extends Component {
                 def.type = BodyDef.BodyType.KinematicBody;
                 break;
         }
-        float h_x = r.sprite.getWidth() * 0.5f;
-        float h_y = r.sprite.getHeight() * 0.5f;
+        float h_x ;
+        float h_y ;
+        if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
+             h_x = 5;
+             h_y = 5;
+        }
+        else{
+             h_x = r.sprite.getWidth() * 0.5f;
+             h_y = r.sprite.getHeight() * 0.5f;
+        }
+
         halfDim.set(h_x, h_y);
 
         def.position.set(t.getPosition().x + h_x, t.getPosition().y + h_y);
