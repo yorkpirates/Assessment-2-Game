@@ -128,8 +128,12 @@ public class Monster extends Entity implements CollisionCallBack {
         count++;
     }
 
-    private int getHealth() {
+    public int getHealth() {
         return health;
+    };
+
+    public void setHealth(int number) {
+        health = number;
     };
 
     private void takeDamage(int amount) {
