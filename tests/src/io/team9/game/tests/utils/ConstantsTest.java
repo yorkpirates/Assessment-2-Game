@@ -1,5 +1,6 @@
 package io.team9.game.tests.utils;
 
+import com.badlogic.gdx.math.Vector2;
 import com.mygdx.utils.Constants;
 import com.mygdx.utils.TileMapCells;
 import io.team9.game.tests.GdxTestRunner;
@@ -41,6 +42,19 @@ public class ConstantsTest {
     public void testBuildingScale() {
         assertEquals(constants.BUILDING_SCALE, 1.5f, 1.5f);
     }
-
+    
+    @Test
+    public void testViewportUpdate() {
+        constants.SCREEN_WIDTH = 2;
+        constants.SCREEN_HEIGHT = 2;
+        constants.UPDATE_VIEWPORT(1, 2);
+        assertEquals(constants.VIEWPORT_HEIGHT, 2);
+        assertEquals(constants.VIEWPORT_WIDTH, 1);
+        assertEquals(constants.ASPECT_RATIO, constants.SCREEN_WIDTH / constants.SCREEN_HEIGHT, constants.SCREEN_WIDTH / constants.SCREEN_HEIGHT);
+        assertEquals(constants.HALF_VIEWPORT_HEIGHT, constants.VIEWPORT_HEIGHT / 2);
+        assertEquals(constants.HALF_VIEWPORT_WIDTH, constants.VIEWPORT_WIDTH / 2);
+        assertEquals(constants.DIMENSIONS, new Vector2(constants.VIEWPORT_WIDTH, constants.VIEWPORT_HEIGHT));
+        assertEquals(constants.HALF_DIMENSIONS, new Vector2(constants.HALF_VIEWPORT_WIDTH, constants.HALF_VIEWPORT_HEIGHT));
+    }
 
 }
