@@ -31,6 +31,6 @@ public class NPCBoatTest {
 
         assertEquals("Should return the target",ship.getComponent(Pirate.class).getTarget(),target);
         AINavigation nav = ship.getComponent(AINavigation.class);
-        
+
     }
 }
