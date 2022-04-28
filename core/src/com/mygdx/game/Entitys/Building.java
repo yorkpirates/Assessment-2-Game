@@ -60,9 +60,13 @@ public class Building extends Entity implements CollisionCallBack {
      * @param name name of building
      */
     public void create(Vector2 pos, String name) {
-        Sprite s = ResourceManager.getSprite(atlas_id, name);
         Renderable r = getComponent(Renderable.class);
-        r.setTexture(s);
+        if(!(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType())){
+            Sprite s = ResourceManager.getSprite(atlas_id, name);
+
+            r.setTexture(s);
+        }
+
         getComponent(Transform.class).setPosition(pos);
         buildingName = name;
 
