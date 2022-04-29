@@ -49,8 +49,6 @@ public class TransformTest {
         assertEquals(transform.getPosition(),transform.newLocation().getPosition());
 
     }
-    @Test
-    public void angelVectorConversion(){
-        
-    }
+
+
 }
