@@ -67,4 +67,17 @@ public class ShipTest {
         assertFalse(boat.getComponent(Pirate.class).getBiggerDamage());
     }
 
+    @Test
+    public void freezeTest() {
+        PhysicsManager.Initialize();
+
+        Ship boat = new Ship();
+
+        boat.setFreeze(true);
+        assertTrue(boat.getFreeze());
+
+        boat.setFreeze(false);
+        assertFalse(boat.getFreeze());
+    }
+
 }
