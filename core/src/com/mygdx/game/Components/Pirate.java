@@ -73,17 +73,25 @@ public class Pirate extends Component {
         isImmortality = state;
     }
 
+    public boolean getImmortality() { return isImmortality; };
+
     public void setUnlimitedAmmo(boolean state){
         isUnlimitedAmmo = state;
     }
+
+    public boolean getUnlimitedAmmo() { return isUnlimitedAmmo; };
 
     public void setShootEightDirections(boolean state){
         isShootEightDirections = state;
     }
 
+    public boolean getShootEightDirections() { return isShootEightDirections; };
+
     public void setBiggerDamage(boolean state){
         isBiggerDamage = state;
     }
+
+    public boolean getBiggerDamage() { return isBiggerDamage; };
 
     public void takeDamage(float dmg) {
         if (isImmortality)
