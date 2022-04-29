@@ -20,10 +20,10 @@ public class Pirate extends Component {
     public int points;
     public static int ammo;
     private final int attackDmg;
-    private boolean isImmortality;
-    private boolean isUnlimitedAmmo;
-    private boolean isShootEightDirections;
-    private boolean isBiggerDamage;
+    public boolean isImmortality;
+    public boolean isUnlimitedAmmo;
+    public boolean isShootEightDirections;
+    public boolean isBiggerDamage;
 
     /**
      * The enemy that is being targeted by the AI.
@@ -84,6 +84,7 @@ public class Pirate extends Component {
     public void setBiggerDamage(boolean state){
         isBiggerDamage = state;
     }
+
     public void takeDamage(float dmg) {
         if (isImmortality)
             dmg = 0;
