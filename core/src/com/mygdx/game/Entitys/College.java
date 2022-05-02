@@ -137,7 +137,9 @@ public class College extends Entity {
     public void update() {
         super.update();
         isAlive();
-
+        if(this.getComponent(Pirate.class).getFaction()== GameManager.getPlayer().getComponent(Pirate.class).getFaction()){
+            return;
+        }
         if(active){
             if (i == 50) {
                 target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));

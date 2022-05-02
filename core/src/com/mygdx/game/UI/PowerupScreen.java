@@ -2,7 +2,6 @@ package com.mygdx.game.UI;
 
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.Input;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.scenes.scene2d.Actor;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
 import com.badlogic.gdx.scenes.scene2d.ui.Label;
@@ -11,27 +10,21 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ChangeListener;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.mygdx.game.Components.Pirate;
-import com.mygdx.game.Entitys.Ship;
-import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
 
-import java.util.ArrayList;
-import java.util.Random;
-
-import static com.mygdx.utils.Constants.TILE_SIZE;
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
 /**
  * Contains widgets defining the shop screen.
  */
 public class PowerupScreen extends Page {
-    public static boolean isPowerup1Owned;
-    public static boolean isPowerup2Owned;
-    public static boolean isPowerup3Owned;
-    public static boolean isPowerup4Owned;
-    public static boolean isPowerup5Owned;
-    public static boolean isPowerup6Owned;
+    public static boolean isImortal;
+    public static boolean isIncreasedDamage;
+    public static boolean isMultiDamage;
+    public static boolean isUnlimitedAmmo;
+    public static boolean isFreezeEnemy;
+
 
     public PowerupScreen(PirateGame parent) {
         super(parent);
@@ -74,8 +67,8 @@ public class PowerupScreen extends Page {
         buyPowerup1.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 20 && isPowerup1Owned == false){
-                    isPowerup1Owned = true;
+                if(Pirate.plunder >= 20 && isImortal == false){
+                    isImortal = true;
                     Pirate.plunder -= 20;
                     parent.setScreen(parent.game);
                 }
@@ -94,8 +87,8 @@ public class PowerupScreen extends Page {
         buyPowerup2.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 10 && isPowerup2Owned == false){
-                    isPowerup2Owned = true;
+                if(Pirate.plunder >= 10 && isIncreasedDamage == false){
+                    isIncreasedDamage = true;
                     Pirate.plunder -= 10;
                     parent.setScreen(parent.game);
                 }
@@ -114,8 +107,8 @@ public class PowerupScreen extends Page {
         buyPowerup3.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 20 && isPowerup3Owned == false){
-                    isPowerup3Owned = true;
+                if(Pirate.plunder >= 20 && isMultiDamage == false){
+                    isMultiDamage = true;
                     Pirate.plunder -= 20;
                     parent.setScreen(parent.game);
                 }
@@ -134,8 +127,8 @@ public class PowerupScreen extends Page {
         buyPowerup4.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 30 && isPowerup4Owned == false){
-                    isPowerup4Owned = true;
+                if(Pirate.plunder >= 30 && isUnlimitedAmmo == false){
+                    isUnlimitedAmmo = true;
                     Pirate.plunder -= 30;
                     parent.setScreen(parent.game);
                 }
@@ -154,8 +147,8 @@ public class PowerupScreen extends Page {
         buyPowerup5.addListener(new ChangeListener() {
             @Override
             public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 10 && isPowerup5Owned == false){
-                    isPowerup5Owned = true;
+                if(Pirate.plunder >= 10 && isFreezeEnemy == false){
+                    isFreezeEnemy = true;
                     Pirate.plunder -= 10;
                     parent.setScreen(parent.game);
                 }
@@ -166,25 +159,6 @@ public class PowerupScreen extends Page {
         t.add(new Image(parent.skin, "coin")).top().left().spaceBottom(space);
         t.add(new Label("10", parent.skin)).right().spaceBottom(space);
 
-
-        t.row();
-        t.add(new Label("More Ships", parent.skin)).spaceBottom(10);
-        t.row();
-        TextButton buyPowerup6 = new TextButton("Buy Powerup", parent.skin);
-        buyPowerup6.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 50 && isPowerup6Owned == false){
-                    isPowerup6Owned = true;
-                    Pirate.plunder -= 50;
-                    parent.setScreen(parent.game);
-                }
-            }
-        });
-        t.add(buyPowerup6).size(100, 25).top().spaceBottom(10);
-        t.row();
-        t.add(new Image(parent.skin, "coin")).left().spaceBottom(space);
-        t.add(new Label("50", parent.skin)).right().spaceBottom(space);
 
 
         t.row();
