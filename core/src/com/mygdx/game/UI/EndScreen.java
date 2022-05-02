@@ -97,7 +97,7 @@ public class EndScreen extends Page {
 
     }
 
-    /**
+    /**NEW
      * Checks if the player meets the win conditions based on the difficulty level
      * @return A Boolean based on whether the player has won
      */

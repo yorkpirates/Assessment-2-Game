@@ -196,6 +196,10 @@ public class NPCShip extends Ship implements CollisionCallBack {
             }
         }
     }
+
+    /**NEW
+     * Called when the ship dies
+     */
     @Override
     public void ShipDeath(){
         stopMovement();

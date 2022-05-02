@@ -225,7 +225,13 @@ public final class GameManager {
         ballCache.get(currentElement++).fire(pos, dir, p);
         currentElement %= cacheSize;
     }
-
+    //new
+    /**
+     * Utilises the cached cannonballs to fire one
+     *
+     * @param c   College that fires
+     * @param dir shoot direction
+     */
     public static void shoot2(College c, Vector2 dir) {
         Vector2 pos = c.getComponent(Transform.class).getPosition().cpy();
         //pos.add(dir.x * TILE_SIZE * 0.5f, dir.y * TILE_SIZE * 0.5f);

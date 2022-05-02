@@ -22,7 +22,7 @@ import com.mygdx.game.PirateGame;
 import static com.mygdx.utils.Constants.*;
 import static com.mygdx.utils.Constants.PHYSICS_TIME_STEP;
 
-/**
+/**NEW
  * Contains widgets defining the shop screen.
  */
 public class ShopScreen extends Page {

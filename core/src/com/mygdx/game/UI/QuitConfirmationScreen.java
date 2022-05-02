@@ -23,8 +23,8 @@ import java.io.File;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
-/**
- * Contains widgets defining the shop screen.
+/**NEW
+ * Screen to confirm quitting.
  */
 public class QuitConfirmationScreen extends Page {
     public QuitConfirmationScreen(PirateGame parent) {

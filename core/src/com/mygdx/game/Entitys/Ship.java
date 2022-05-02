@@ -50,27 +50,7 @@ public class Ship extends Entity implements CollisionCallBack {
 
         Transform t = new Transform();
         t.setPosition(800, 800);
-        /*if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
-            RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
-            rb.setCallback(this);
-            Pirate p = new Pirate();
 
-            // rb.setCallback(this);
-
-            addComponents(t, rb, p);
-        }
-        else{
-            Renderable r = new Renderable(3, "white-up", RenderLayer.Transparent);
-            RigidBody rb = new RigidBody(PhysicsBodyType.Dynamic, r, t);
-            rb.setCallback(this);
-
-            Pirate p = new Pirate();
-
-            // rb.setCallback(this);
-
-            addComponents(t, r, rb, p);
-
-        }*/
         Renderable r;
         if(Application.ApplicationType.HeadlessDesktop == Gdx.app.getType()){
             r =new Renderable();
@@ -237,7 +217,7 @@ public class Ship extends Entity implements CollisionCallBack {
 
     public void ShipDeath(){}
 
-    /**
+    /** MAJOR ADDITIONS
      * if called on a Player against anything else call it on the other thing
      */
     @Override

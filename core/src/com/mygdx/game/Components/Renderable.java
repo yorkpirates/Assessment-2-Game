@@ -51,6 +51,11 @@ public class Renderable extends Component {
         RenderingManager.addItem(this, layer);
     }
 
+    /**NEW
+     *
+     * @param img image path to apply
+     * @param layer the rendering layer
+     */
     public Renderable(String img, RenderLayer layer) {
         this();
         Texture texture = new Texture(img);

@@ -112,7 +112,7 @@ public class College extends Entity {
         return res;
     }
 
-    /**
+    /**NEW
      * Can be called to kill a college and all of its buildings
      */
     public void kill(){
