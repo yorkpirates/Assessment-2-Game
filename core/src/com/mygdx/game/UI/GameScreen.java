@@ -139,7 +139,7 @@ public class GameScreen extends Page {
         interval = 0f;
         GameManager.ships.get(1).setHealth(0);
         GameManager.ships.get(2).setHealth(0);
-        
+
     }
 
     private float accumulator;
@@ -333,6 +333,10 @@ public class GameScreen extends Page {
         generatePowerUpTable();
     }
 
+    /**
+     *
+     * @param type The type of warning
+     */
     private void send_warn(int type){
         if(type == 1 ) {
             warn1_time = 5;
@@ -344,6 +348,9 @@ public class GameScreen extends Page {
         }
     }
 
+    /**
+     * Reward the player with a powerup
+     */
     private void rewardPowerUp(){
         ArrayList<Ship> ships = GameManager.getShips();
         int j = r.nextInt(5);
@@ -460,6 +467,9 @@ public class GameScreen extends Page {
         }
     }
 
+    /**
+     * Generate the table that displays powerups
+     */
     private void generatePowerUpTable(){
         Table t2 = new Table();
         t2.bottom().right();
@@ -491,6 +501,9 @@ public class GameScreen extends Page {
 
     }
 
+    /**
+     * Check if the player wants to use a powerup and then give them that power
+     */
     private void powerUp(){
 
 
