@@ -15,7 +15,6 @@ import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.QuestManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
