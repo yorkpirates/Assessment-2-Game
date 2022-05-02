@@ -99,6 +99,7 @@ public final class GameManager {
         CreatePlayer();
         CreateWeather();
         CreateMonster();
+
         final int cnt = settings.get("factionDefaults").getInt("shipCount");
         for (int i = 0; i < factions.size(); i++) {
             CreateCollege(i + 1);
