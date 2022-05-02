@@ -12,6 +12,7 @@ import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.Physics.CollisionCallBack;
 import com.mygdx.game.Physics.CollisionInfo;
+import com.mygdx.game.UI.PowerupScreen;
 import com.mygdx.utils.QueueFIFO;
 import com.mygdx.utils.Utilities;
 
@@ -70,13 +71,17 @@ public class NPCShip extends Ship implements CollisionCallBack {
      */
     @Override
     public void update() {
-        if(!isAlive()){
+        if(!isAlive() ){
+            return;
+        }
+        if(getFreeze()){
+            stopMovement();
             return;
         }
         super.update();
         stateMachine.update();
         AINavigation nav = getComponent(AINavigation.class);
-        if(stateMachine.isInState(EnemyState.ATTACK)){
+        if(stateMachine.isInState(EnemyState.ATTACK) ){
             if (timer ==100){
                 Vector2 target = new Vector2(-1 * (this.getPosition().x - GameManager.ships.get(0).getPosition().x), -1 * (this.getPosition().y - GameManager.ships.get(0).getPosition().y));
                 GameManager.shoot(this, target);

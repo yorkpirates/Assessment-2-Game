@@ -24,7 +24,7 @@ public class PowerupScreen extends Page {
     public static boolean isMultiDamage;
     public static boolean isUnlimitedAmmo;
     public static boolean isFreezeEnemy;
-    public static boolean isPowerup6Owned;
+
 
     public PowerupScreen(PirateGame parent) {
         super(parent);
@@ -159,25 +159,6 @@ public class PowerupScreen extends Page {
         t.add(new Image(parent.skin, "coin")).top().left().spaceBottom(space);
         t.add(new Label("10", parent.skin)).right().spaceBottom(space);
 
-
-        t.row();
-        t.add(new Label("More Ships", parent.skin)).spaceBottom(10);
-        t.row();
-        TextButton buyPowerup6 = new TextButton("Buy Powerup", parent.skin);
-        buyPowerup6.addListener(new ChangeListener() {
-            @Override
-            public void changed(ChangeEvent event, Actor actor) {
-                if(Pirate.plunder >= 50 && isPowerup6Owned == false){
-                    isPowerup6Owned = true;
-                    Pirate.plunder -= 50;
-                    parent.setScreen(parent.game);
-                }
-            }
-        });
-        t.add(buyPowerup6).size(100, 25).top().spaceBottom(10);
-        t.row();
-        t.add(new Image(parent.skin, "coin")).left().spaceBottom(space);
-        t.add(new Label("50", parent.skin)).right().spaceBottom(space);
 
 
         t.row();
