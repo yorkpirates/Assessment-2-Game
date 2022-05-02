@@ -31,8 +31,6 @@ public class QuitConfirmationScreen extends Page {
         super(parent);
     }
 
-    private float accumulator;
-
     /**
      * Called every frame calls all other functions that need to be called every frame by rasing events and update methods
      *
@@ -135,12 +133,18 @@ public class QuitConfirmationScreen extends Page {
         super.hide();
     }
 
+    /**
+     * Used to resize the background texture to the correct size to fill the window
+     * @param width  new dim x width of the screen
+     * @param height new dom y height of the screen
+     */
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
         Table t = (Table) actors.get(0);
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("shopBG.jpg"))); // prevent the bg being stretched
     }
+    
     private void showSaveMenu(){
         if(System.getProperty("os.name").contains("Mac")){
             //Choose A

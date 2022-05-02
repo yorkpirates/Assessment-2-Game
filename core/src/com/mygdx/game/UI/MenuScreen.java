@@ -122,6 +122,11 @@ public class MenuScreen extends Page {
         super.hide();
     }
 
+    /**
+     * Resize background and game window to the inputted scale
+     * @param width  new dim x the width of the game window
+     * @param height new dom y the height of the game window
+     */
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);
