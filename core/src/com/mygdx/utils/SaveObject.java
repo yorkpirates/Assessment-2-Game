@@ -6,7 +6,6 @@ import com.mygdx.game.Entitys.College;
 import com.mygdx.game.Entitys.Player;
 import com.mygdx.game.Entitys.Ship;
 import com.mygdx.game.Managers.GameManager;
-import com.sun.org.apache.xpath.internal.operations.Bool;
 
 import javax.xml.stream.*;
 import javax.xml.stream.events.Characters;
