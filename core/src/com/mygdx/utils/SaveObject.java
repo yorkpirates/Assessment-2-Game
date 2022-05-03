@@ -1,6 +1,7 @@
 package com.mygdx.utils;
 
 import com.badlogic.gdx.Game;
+import com.badlogic.gdx.Gdx;
 import com.mygdx.game.Components.Pirate;
 import com.mygdx.game.Entitys.College;
 import com.mygdx.game.Entitys.Player;
@@ -165,9 +166,15 @@ public final class SaveObject  {
      */
     public static void readXML(String path){
         try{
+
             XMLInputFactory factory = XMLInputFactory.newInstance();
-            XMLEventReader eventReader =
-                    factory.createXMLEventReader(new FileReader(path));
+            XMLEventReader eventReader;
+            if(path=="restart.xml"){
+                eventReader= factory.createXMLEventReader(Gdx.files.internal("restart.xml").reader());
+            }
+            else{
+                eventReader= factory.createXMLEventReader(new FileReader(path));
+            }
 
             while(eventReader.hasNext()) {
                 XMLEvent event = eventReader.nextEvent();
