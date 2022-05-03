@@ -1,4 +1,4 @@
-package io.team9.game.tests.utils;
+package io.team9.game.tests.AI.utils;
 
 import com.badlogic.gdx.math.Vector2;
 import com.mygdx.utils.Constants;

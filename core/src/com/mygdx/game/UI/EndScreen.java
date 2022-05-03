@@ -15,6 +15,7 @@ import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.QuestManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
+import com.mygdx.utils.SaveObject;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -66,6 +67,26 @@ public class EndScreen extends Page {
                 System.exit(0);
             }
         });
+        TextButton RestartBtn = new TextButton("Restart", parent.skin);
+        RestartBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                SaveObject.readXML("restart.xml");
+                DifficultyManager.SelectEasy();
+                parent.setScreen(parent.game);
+                //to be removed upon implementation in save
+                GameManager.getPlayer().updateHealth();
+                /*
+                parent.game.dispose();
+                int id_map = ResourceManager.addTileMap("Map.tmx");
+                parent.game =  new GameScreen(parent,  id_map);
+                parent.setScreen(parent.menu);
+
+                 */
+            }
+        });
+        t.add(RestartBtn).top().size(100, 25).spaceBottom(space);
+        t.row();
         t.add(b);
     }
 
@@ -92,6 +113,7 @@ public class EndScreen extends Page {
         Player p = GameManager.getPlayer();
         String stats = String.format("Health: %s\nAmmo: %s\nPlunder: %s\nPoints: %s/%s\nQuests Completed: %s/%s", p.getHealth(), p.getAmmo(), p.getPlunder(),p.getComponent(Pirate.class).getPoints(),pointsNeeded,QuestManager.numCompleted,questsNeeded);
         playerStats.setText(stats);
+
 
 
     }

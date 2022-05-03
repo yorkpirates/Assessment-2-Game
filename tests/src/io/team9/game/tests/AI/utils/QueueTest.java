@@ -1,4 +1,4 @@
-package io.team9.game.tests.utils;
+package io.team9.game.tests.AI.utils;
 import com.mygdx.utils.QueueFIFO;
 import io.team9.game.tests.GdxTestRunner;
 import org.junit.Test;
