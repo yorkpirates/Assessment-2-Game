@@ -31,8 +31,9 @@ import static org.mockito.Mockito.mock;
 import com.badlogic.gdx.ApplicationListener;
 import com.badlogic.gdx.backends.headless.HeadlessApplication;
 import com.badlogic.gdx.backends.headless.HeadlessApplicationConfiguration;
-//Code taken from under the apache 2 license 
+//Code taken from
 //https://github.com/TomGrill/gdx-testing
+//under the apache 2 license 
 public class GdxTestRunner extends BlockJUnit4ClassRunner implements ApplicationListener {
 
 	private Map<FrameworkMethod, RunNotifier> invokeInRender = new HashMap<FrameworkMethod, RunNotifier>();
