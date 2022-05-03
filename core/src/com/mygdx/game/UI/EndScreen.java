@@ -67,6 +67,8 @@ public class EndScreen extends Page {
                 System.exit(0);
             }
         });
+        t.add(b).spaceBottom(5);;
+        t.row();
         TextButton RestartBtn = new TextButton("Restart", parent.skin);
         RestartBtn.addListener(new ChangeListener() {
             @Override
@@ -76,18 +78,12 @@ public class EndScreen extends Page {
                 parent.setScreen(parent.game);
                 //to be removed upon implementation in save
                 GameManager.getPlayer().updateHealth();
-                /*
-                parent.game.dispose();
-                int id_map = ResourceManager.addTileMap("Map.tmx");
-                parent.game =  new GameScreen(parent,  id_map);
-                parent.setScreen(parent.menu);
 
-                 */
             }
         });
         t.add(RestartBtn).top().size(100, 25).spaceBottom(space);
         t.row();
-        t.add(b);
+
     }
 
     @Override
