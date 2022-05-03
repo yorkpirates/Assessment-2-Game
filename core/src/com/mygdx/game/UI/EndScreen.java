@@ -15,6 +15,7 @@ import com.mygdx.game.Managers.GameManager;
 import com.mygdx.game.Managers.QuestManager;
 import com.mygdx.game.Managers.ResourceManager;
 import com.mygdx.game.PirateGame;
+import com.mygdx.utils.SaveObject;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
@@ -66,7 +67,23 @@ public class EndScreen extends Page {
                 System.exit(0);
             }
         });
-        t.add(b);
+        t.add(b).spaceBottom(5);;
+        t.row();
+        TextButton RestartBtn = new TextButton("Restart", parent.skin);
+        RestartBtn.addListener(new ChangeListener() {
+            @Override
+            public void changed(ChangeEvent event, Actor actor) {
+                SaveObject.readXML("restart.xml");
+                DifficultyManager.SelectEasy();
+                parent.setScreen(parent.game);
+                //to be removed upon implementation in save
+                GameManager.getPlayer().updateHealth();
+
+            }
+        });
+        t.add(RestartBtn).top().size(100, 25).spaceBottom(space);
+        t.row();
+
     }
 
     @Override
