@@ -15,7 +15,7 @@ import com.mygdx.game.PirateGame;
 
 import static com.mygdx.utils.Constants.VIEWPORT_HEIGHT;
 
-/**
+/**NEW
  * Contains widgets defining the shop screen.
  */
 public class PowerupScreen extends Page {

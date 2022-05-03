@@ -15,7 +15,7 @@ import com.mygdx.game.Physics.PhysicsBodyType;
 
 import static com.mygdx.utils.Constants.TILE_SIZE;
 
-/**
+/** NEW CLASS
  * Cannonball entity and the methods to get it flying.
  */
 public class CannonBallCollege extends Entity implements CollisionCallBack {

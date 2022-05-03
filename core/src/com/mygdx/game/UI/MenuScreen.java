@@ -134,7 +134,7 @@ public class MenuScreen extends Page {
         t.setBackground(new TextureRegionDrawable(ResourceManager.getTexture("newmenuBG.jpg"))); // prevent the bg being stretched
     }
 
-    /**
+    /**NEW
      * Shows the load menu for windows
      * for mac loads from macs save file
      *

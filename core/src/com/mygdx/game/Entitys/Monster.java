@@ -16,7 +16,7 @@ import com.mygdx.game.Physics.PhysicsBodyType;
 
 import java.util.Objects;
 
-/**
+/** NEW
  * Base class.
  */
 public class Monster extends Entity implements CollisionCallBack {

@@ -18,15 +18,15 @@ import com.mygdx.utils.Utilities;
 import java.util.Objects;
 import java.util.Vector;
 
-/**
- * Base class for game ships, Player & NPC.
+/**NEW
+ *
  */
 public class Weather extends Entity implements CollisionCallBack {
     private static int weatherCount = 0;
     RigidBody rb;
     int count = 0;
     /**
-     * Creates a ship entity, containing Transform, Renderable, RigidBody, and Pirate components.
+     * Creates a Weather entity,
      */
     public Weather() {
         super(4);

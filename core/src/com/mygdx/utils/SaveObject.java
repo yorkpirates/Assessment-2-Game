@@ -12,12 +12,12 @@ import javax.xml.stream.events.Characters;
 import javax.xml.stream.events.StartElement;
 import javax.xml.stream.events.XMLEvent;
 import java.io.*;
-
+/**NEW
+ * This classes job is to hold all the data needed to reconstruct the game state
+ * Its the object that will be written using serilisation to a file
+ */
 public final class SaveObject  {
-    /**
-     * This classes job is to hold all the data needed to reconstruct the game state
-     * Its the object that will be written using serilisation to a file
-     */
+
 
     //uses STAX parser
 

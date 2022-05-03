@@ -69,6 +69,7 @@ public class Pirate extends Component {
         this.factionId = factionId;
     }
 
+    //NEW FUNCTIONS
     public void setImmortality(boolean state){
         isImmortality = state;
     }
@@ -92,7 +93,7 @@ public class Pirate extends Component {
     }
 
     public boolean getBiggerDamage() { return isBiggerDamage; };
-
+    //END
     public void takeDamage(float dmg) {
         if (isImmortality)
             dmg = 0;

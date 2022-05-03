@@ -1,5 +1,7 @@
 package com.mygdx.game.Managers;
 
+
+//NEW
 public class DifficultyManager {
     private static String level = "n";
 

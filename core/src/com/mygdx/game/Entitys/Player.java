@@ -32,6 +32,9 @@ public class Player extends Ship {
         this(GameManager.getSettings().get("starting").getFloat("playerSpeed"));
     }
 
+    /**NEW
+     * update the players health based upon the difficulty
+     */
     public void updateHealth() {
         String mode = DifficultyManager.getDifficulty();
         JsonValue starting = GameManager.getSettings().get("starting");
@@ -54,6 +57,8 @@ public class Player extends Ship {
     public int getAmmo() {
         return getComponent(Pirate.class).getAmmo();
     }
+
+    //NEW
     public void setAmmo(Integer ammo){
         getComponent(Pirate.class).setAmmo(ammo);
     }

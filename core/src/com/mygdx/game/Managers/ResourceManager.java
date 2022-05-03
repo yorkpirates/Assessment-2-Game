@@ -234,10 +234,10 @@ public final class ResourceManager {
         return getTextureAtlas(atlas_id).createSprite(name);
     }
 
-    /**
-     * @param atlas_id the id of the source texture atlas
-     * @param name     the name of the texture
-     * @return the found Sprite in the given atlas
+    /**NEW
+     *
+     * @param img image name
+     * @return sprite
      */
     public static Sprite getSprite(String img) {
         Texture texture = new Texture(img);
