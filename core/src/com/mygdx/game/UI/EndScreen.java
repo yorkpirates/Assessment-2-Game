@@ -132,6 +132,10 @@ public class EndScreen extends Page {
     }
 
 
+    /**
+     * @param width  new dim x
+     * @param height new dom y
+     */
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);

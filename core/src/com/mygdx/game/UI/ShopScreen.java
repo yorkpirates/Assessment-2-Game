@@ -131,6 +131,11 @@ public class ShopScreen extends Page {
         super.hide();
     }
 
+    /**
+     * Used to resize the background texture to the correct size to fill the window
+     * @param width  new dim x width of the screen
+     * @param height new dom y height of the screen
+     */
     @Override
     public void resize(int width, int height) {
         super.resize(width, height);

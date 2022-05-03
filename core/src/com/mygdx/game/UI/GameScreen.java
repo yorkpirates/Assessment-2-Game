@@ -210,7 +210,6 @@ public class GameScreen extends Page {
      * Update the UI with new values for health, quest status, etc.
      * also called once per frame but used for actors by my own convention
      */
-    //private String prevQuest = "";
     @Override
     protected void update() {
         super.update();
@@ -505,9 +504,6 @@ public class GameScreen extends Page {
      * Check if the player wants to use a powerup and then give them that power
      */
     private void powerUp(){
-
-
-
         ArrayList<Ship> ships = GameManager.getShips();
         float threshold = 0.1f;
         interval += Gdx.graphics.getDeltaTime();
@@ -663,10 +659,6 @@ public class GameScreen extends Page {
 
         }
 
-
-
-
-
         for(int i=0 ; i<6 ; i++){
             if (powers[i]>=5){
                 powers[i] -= Gdx.graphics.getDeltaTime();
@@ -700,7 +692,6 @@ public class GameScreen extends Page {
                 num_powers--;
             }
         }
-
 
         if(message1!=-1){
             if (powers[message1]>5)
